@@ -5,13 +5,15 @@ import { createContext, useContext, useState, useEffect } from 'react'
 const EnvironmentContext = createContext()
 
 export function EnvironmentProvider({ children }) {
-  const [environment, setEnvironment] = useState('json-server') // 'json-server' | 'neon-db'
+  // Production'da static data, development'da json-server kullan
+  const defaultEnvironment = process.env.NODE_ENV === 'production' ? 'production' : 'json-server'
+  const [environment, setEnvironment] = useState(defaultEnvironment) // 'json-server' | 'neon-db' | 'production'
 
-  // LocalStorage'dan environment seçimini yükle
+  // LocalStorage'dan environment seçimini yükle (sadece development'da)
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && process.env.NODE_ENV !== 'production') {
       const savedEnvironment = localStorage.getItem('environment')
-      if (savedEnvironment && ['json-server', 'neon-db'].includes(savedEnvironment)) {
+      if (savedEnvironment && ['json-server', 'neon-db', 'production'].includes(savedEnvironment)) {
         setEnvironment(savedEnvironment)
       }
     }
@@ -25,7 +27,7 @@ export function EnvironmentProvider({ children }) {
   }, [environment])
 
   const switchEnvironment = (newEnvironment) => {
-    if (['json-server', 'neon-db'].includes(newEnvironment)) {
+    if (['json-server', 'neon-db', 'production'].includes(newEnvironment)) {
       setEnvironment(newEnvironment)
     }
   }
@@ -35,6 +37,7 @@ export function EnvironmentProvider({ children }) {
     switchEnvironment,
     isJsonServer: environment === 'json-server',
     isNeonDb: environment === 'neon-db',
+    isProduction: environment === 'production',
   }
 
   return <EnvironmentContext.Provider value={value}>{children}</EnvironmentContext.Provider>
