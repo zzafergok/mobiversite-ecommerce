@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import ProductCard from '@/components/ecommerce/ProductCard'
 import ProductFilters from '@/components/ecommerce/ProductFilters'
@@ -8,7 +8,7 @@ import useApiService from '@/hooks/ecommerce/useApiService'
 import { ProductLoader } from '@/components/ui/EcommerceLoader'
 import { Card, CardContent } from '@/components/core/card'
 
-export default function ProductsPage() {
+function ProductsPageContent() {
   const searchParams = useSearchParams()
   const [products, setProducts] = useState([])
   const [filteredProducts, setFilteredProducts] = useState([])
@@ -240,5 +240,13 @@ export default function ProductsPage() {
         </>
       )}
     </div>
+  )
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={<ProductLoader size='lg' className='min-h-96' />}>
+      <ProductsPageContent />
+    </Suspense>
   )
 }
