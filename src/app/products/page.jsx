@@ -34,8 +34,11 @@ function ProductsPageContent() {
     const urlCategory = searchParams.get('category')
     const urlSort = searchParams.get('sort')
 
+    // Always sync search query with URL parameter
     if (urlSearchQuery) {
       setSearchQuery(decodeURIComponent(urlSearchQuery))
+    } else {
+      setSearchQuery('')
     }
 
     if (urlCategory) {
@@ -45,10 +48,15 @@ function ProductsPageContent() {
       } else {
         setSelectedCategory(urlCategory)
       }
+    } else {
+      // Reset to 'all' if no category in URL
+      setSelectedCategory('all')
     }
 
     if (urlSort && ['default', 'price-low', 'price-high', 'name'].includes(urlSort)) {
       setSortBy(urlSort)
+    } else {
+      setSortBy('default')
     }
   }, [searchParams])
 
