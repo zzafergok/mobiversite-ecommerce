@@ -159,20 +159,22 @@ function LoginForm() {
               </Button>
             </div>
 
-            <div className='pt-4'>
-              <Separator className='mb-4' />
-              <Button
-                type='button'
-                variant='ghost'
-                onClick={fillDemoCredentials}
-                className='w-full text-blue-600 hover:text-blue-500'
-              >
-                Demo hesap bilgilerini kullan
-              </Button>
-              <p className='mt-2 text-xs text-gray-500 dark:text-gray-400 text-center'>
-                Demo: Kullanıcı adı: zafergok, Şifre: 123123
-              </p>
-            </div>
+            {process.env.NODE_ENV === 'development' && (
+              <div className='pt-4'>
+                <Separator className='mb-4' />
+                <Button
+                  type='button'
+                  variant='ghost'
+                  onClick={fillDemoCredentials}
+                  className='w-full text-blue-600 hover:text-blue-500'
+                >
+                  Demo hesap bilgilerini kullan
+                </Button>
+                <p className='mt-2 text-xs text-gray-500 dark:text-gray-400 text-center'>
+                  Demo: Kullanıcı adı: zafergok, Şifre: 123123
+                </p>
+              </div>
+            )}
 
             <div className='text-center text-sm text-gray-600 dark:text-gray-400 pt-4 border-t'>
               Hesabınız yok mu?{' '}
