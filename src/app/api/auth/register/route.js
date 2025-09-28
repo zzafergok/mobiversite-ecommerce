@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
+import { apiService } from '@/services/ecommerce/apiService'
 
 export async function POST(request) {
   try {
@@ -17,24 +18,20 @@ export async function POST(request) {
       return NextResponse.json({ message: 'Geçerli bir email adresi giriniz' }, { status: 400 })
     }
 
-    // Get API service - bu hook kullanımı server-side'da çalışmayabilir
-    // Doğrudan jsonServerService kullanacağız
-    const { jsonServerService } = await import('@/services/ecommerce/jsonServerService')
-
     // Check if username already exists
-    const usernameExists = await jsonServerService.checkUsernameExists(userData.username)
+    const usernameExists = await apiService.checkUsernameExists(userData.username)
     if (usernameExists) {
       return NextResponse.json({ message: 'Bu kullanıcı adı zaten kullanılıyor' }, { status: 409 })
     }
 
     // Check if email already exists
-    const emailExists = await jsonServerService.checkEmailExists(userData.email)
+    const emailExists = await apiService.checkEmailExists(userData.email)
     if (emailExists) {
       return NextResponse.json({ message: 'Bu email adresi zaten kullanılıyor' }, { status: 409 })
     }
 
     // Create new user
-    const newUser = await jsonServerService.createUser(userData)
+    const newUser = await apiService.createUser(userData)
 
     // Remove password from response
     const { password, ...userWithoutPassword } = newUser

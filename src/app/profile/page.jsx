@@ -2,7 +2,6 @@
 
 import { useAuth } from '@/contexts/AuthContext'
 import { useWishlist } from '@/contexts/WishlistContext'
-import { useEnvironment } from '@/contexts/EnvironmentContext'
 import Link from 'next/link'
 import { Heart, Package, Settings, User, Calendar, Mail, MapPin, Phone, Edit } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/core/card'
@@ -12,7 +11,6 @@ import { Button } from '@/components/core/button'
 export default function ProfilePage() {
   const { user } = useAuth()
   const { items: wishlistItems } = useWishlist()
-  const { environment } = useEnvironment()
 
   return (
     <div className='space-y-6 md:space-y-8'>
@@ -93,7 +91,7 @@ export default function ProfilePage() {
                   <div className='text-left min-w-0 flex-1'>
                     <p className='text-xs lg:text-sm text-gray-500'>API Ortamı</p>
                     <Badge variant='secondary' size='sm' className='mt-1'>
-                      {environment === 'json-server' ? 'JSON Server' : 'Neon DB'}
+                      Production API
                     </Badge>
                   </div>
                 </div>

@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
+import { apiService } from '@/services/ecommerce/apiService'
 
 export async function PATCH(request) {
   try {
@@ -21,18 +22,17 @@ export async function PATCH(request) {
     }
     const userData = await request.json()
 
-    // Get API service
-    const { jsonServerService } = await import('@/services/ecommerce/jsonServerService')
+    // Use API service
 
     // Get current user
-    const currentUser = await jsonServerService.getUserById(sessionData.userId)
+    const currentUser = await apiService.getUserById(sessionData.userId)
     if (!currentUser) {
       return NextResponse.json({ message: 'Kullanıcı bulunamadı' }, { status: 404 })
     }
 
     // If email is being updated, check if it's already taken by another user
     if (userData.email && userData.email !== currentUser.email) {
-      const emailExists = await jsonServerService.checkEmailExists(userData.email)
+      const emailExists = await apiService.checkEmailExists(userData.email)
       if (emailExists) {
         return NextResponse.json({ message: 'Bu email adresi zaten kullanılıyor' }, { status: 409 })
       }
@@ -46,14 +46,14 @@ export async function PATCH(request) {
 
     // If username is being updated, check if it's already taken by another user
     if (userData.username && userData.username !== currentUser.username) {
-      const usernameExists = await jsonServerService.checkUsernameExists(userData.username)
+      const usernameExists = await apiService.checkUsernameExists(userData.username)
       if (usernameExists) {
         return NextResponse.json({ message: 'Bu kullanıcı adı zaten kullanılıyor' }, { status: 409 })
       }
     }
 
     // Update user with partial data
-    const updatedUser = await jsonServerService.updateUserPartial(sessionData.userId, userData)
+    const updatedUser = await apiService.updateUserPartial(sessionData.userId, userData)
 
     // Remove password from response
     const { password, ...userWithoutPassword } = updatedUser

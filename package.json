@@ -20,9 +20,7 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "json-server": "json-server --watch db.json --port 3001",
-    "dev:frontend": "next dev --port 3000",
-    "dev:json-server": "npm run json-server",
-    "dev:clean": "pkill -f 'json-server|next dev' || true && npm run dev"
+    "dev:with-api": "concurrently \"npm run json-server\" \"next dev\""
   },
   "keywords": [
     "nextjs",

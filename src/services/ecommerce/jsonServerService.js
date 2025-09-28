@@ -1,12 +1,11 @@
 import axios from 'axios'
 
-const JSON_SERVER_BASE_URL = 'http://localhost:3001'
-
 const jsonServerApi = axios.create({
-  baseURL: JSON_SERVER_BASE_URL,
+  baseURL: 'http://localhost:3001',
   headers: {
     'Content-Type': 'application/json',
   },
+  timeout: 10000,
 })
 
 export const jsonServerService = {
@@ -17,8 +16,8 @@ export const jsonServerService = {
   },
 
   async getProduct(id) {
-    const response = await jsonServerApi.get(`/products?id=${id}`)
-    return response.data[0] || null
+    const response = await jsonServerApi.get(`/products/${id}`)
+    return response.data
   },
 
   async getProductsByCategory(category) {
@@ -33,32 +32,22 @@ export const jsonServerService = {
   },
 
   async getUserById(id) {
-    const response = await jsonServerApi.get(`/users?id=${id}`)
-    return response.data[0] || null
+    const response = await jsonServerApi.get(`/users/${id}`)
+    return response.data
   },
 
   async createUser(userData) {
-    const response = await jsonServerApi.post('/users', {
-      ...userData,
-      createdAt: new Date().toISOString(),
-      id: Date.now().toString(), // Simple ID generation
-    })
+    const response = await jsonServerApi.post('/users', userData)
     return response.data
   },
 
   async updateUser(id, userData) {
-    const response = await jsonServerApi.put(`/users/${id}`, {
-      ...userData,
-      updatedAt: new Date().toISOString(),
-    })
+    const response = await jsonServerApi.put(`/users/${id}`, userData)
     return response.data
   },
 
   async updateUserPartial(id, userData) {
-    const response = await jsonServerApi.patch(`/users/${id}`, {
-      ...userData,
-      updatedAt: new Date().toISOString(),
-    })
+    const response = await jsonServerApi.patch(`/users/${id}`, userData)
     return response.data
   },
 
@@ -89,14 +78,13 @@ export const jsonServerService = {
   },
 
   async getOrder(id) {
-    const response = await jsonServerApi.get(`/orders?id=${id}`)
-    return response.data[0] || null
+    const response = await jsonServerApi.get(`/orders/${id}`)
+    return response.data
   },
 
   // Carts
   async getUserCart(userId) {
     const response = await jsonServerApi.get(`/carts?userId=${userId}`)
-    // Get the most recent cart (highest timestamp)
     if (response.data.length > 0) {
       return response.data.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0))[0]
     }
@@ -104,18 +92,15 @@ export const jsonServerService = {
   },
 
   async updateUserCart(userId, items) {
-    // JSON Server 1.0.0-beta doesn't support updates properly
-    // We'll just create a new cart entry each time and get the latest one
     const response = await jsonServerApi.post('/carts', {
       userId,
       items,
-      timestamp: Date.now(), // Add timestamp to track latest
+      timestamp: Date.now(),
     })
     return response.data
   },
 
   async clearUserCart(userId) {
-    // Create empty cart
     const response = await jsonServerApi.post('/carts', {
       userId,
       items: [],

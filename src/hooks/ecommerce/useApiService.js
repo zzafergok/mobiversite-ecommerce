@@ -1,9 +1,7 @@
-import { useEnvironment } from '@/contexts/EnvironmentContext'
-import { getApiService } from '@/services/ecommerce/apiService'
+import { apiService } from '@/services/ecommerce/apiService'
 
 export function useApiService() {
-  const { environment } = useEnvironment()
-  return getApiService(environment)
+  return apiService
 }
 
 export default useApiService

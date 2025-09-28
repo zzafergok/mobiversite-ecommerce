@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
-import { jsonServerService } from '@/services/ecommerce/jsonServerService'
+import { apiService } from '@/services/ecommerce/apiService'
 
 export async function POST(request) {
   try {
@@ -10,8 +10,8 @@ export async function POST(request) {
       return NextResponse.json({ message: 'Kullanıcı adı ve şifre gerekli' }, { status: 400 })
     }
 
-    // JSON Server'dan kullanıcıyı kontrol et
-    const user = await jsonServerService.getUserByCredentials(username, password)
+    // API'dan kullanıcıyı kontrol et
+    const user = await apiService.getUserByCredentials(username, password)
 
     if (!user) {
       return NextResponse.json({ message: 'Geçersiz kullanıcı adı veya şifre' }, { status: 401 })

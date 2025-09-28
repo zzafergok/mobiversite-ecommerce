@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
-import { jsonServerService } from '@/services/ecommerce/jsonServerService'
+import { apiService } from '@/services/ecommerce/apiService'
 
 export async function GET() {
   try {
@@ -16,7 +16,7 @@ export async function GET() {
       const decodedToken = JSON.parse(Buffer.from(token, 'base64').toString())
 
       // Kullanıcı bilgilerini al
-      const user = await jsonServerService.getUserById(decodedToken.userId)
+      const user = await apiService.getUserById(decodedToken.userId)
 
       if (!user) {
         return NextResponse.json({ message: 'Kullanıcı bulunamadı' }, { status: 404 })

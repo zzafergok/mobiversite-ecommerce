@@ -1,7 +1,6 @@
 import { CartProvider } from '@/contexts/CartContext'
 import { WishlistProvider } from '@/contexts/WishlistContext'
 import { ListsProvider } from '@/contexts/ListsContext'
-import { EnvironmentProvider } from '@/contexts/EnvironmentContext'
 import { AuthProvider } from '@/contexts/AuthContext'
 import { CookieConsentProvider } from '@/contexts/CookieConsentContext'
 import { ToastProvider } from '@/contexts/ToastContext'
@@ -39,13 +38,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang='tr'>
       <body className='bg-white text-gray-900 antialiased m-0 p-0'>
-        <EnvironmentProvider>
-          <AuthProvider>
-            <ToastProvider>
-              <CartProvider>
-                <WishlistProvider>
-                  <ListsProvider>
-                    <CookieConsentProvider>
+        <AuthProvider>
+          <ToastProvider>
+            <CartProvider>
+              <WishlistProvider>
+                <ListsProvider>
+                  <CookieConsentProvider>
                       <div className='min-h-screen flex flex-col w-full'>
                         <Navbar />
                         <main className='flex-1 py-4 w-full px-0 md:px-4 md:pt-36'>{children}</main>
@@ -61,7 +59,6 @@ export default function RootLayout({ children }) {
               </CartProvider>
             </ToastProvider>
           </AuthProvider>
-        </EnvironmentProvider>
       </body>
     </html>
   )
