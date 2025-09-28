@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 
-// Public routes that don't require authentication
-const publicRoutes = ['/', '/products', '/cart', '/login', '/register', '/cookie-policy']
+// Public routes that don't require authentication (currently handled by specific matcher)
+// const publicRoutes = ['/', '/products', '/cart', '/login', '/register', '/cookie-policy']
 
 // Protected routes that require authentication
 const protectedRoutes = [
@@ -38,12 +38,13 @@ export function middleware(request) {
   const { pathname } = request.nextUrl
   const url = request.nextUrl.clone()
 
-  // Skip middleware for static files, Next.js internals, and non-auth API routes
+  // Skip middleware for static files, Next.js internals, and API routes
   if (
     pathname.startsWith('/_next') ||
-    (pathname.startsWith('/api') && !pathname.startsWith('/api/auth')) ||
+    pathname.startsWith('/api') ||
     pathname.startsWith('/static') ||
-    pathname.includes('.') // Skip files with extensions
+    pathname.includes('.') || // Skip files with extensions
+    pathname.startsWith('/favicon')
   ) {
     return NextResponse.next()
   }
@@ -51,13 +52,10 @@ export function middleware(request) {
   // Verify auth token
   const user = verifyAuthToken(request)
 
-  // Check if route is public
-  const isPublicRoute = publicRoutes.some((route) => pathname === route || pathname.startsWith(route + '/'))
-
   // Check if route is protected
   const isProtectedRoute = protectedRoutes.some((route) => pathname === route || pathname.startsWith(route + '/'))
 
-  // Check if route is auth route (login)
+  // Check if route is auth route (login/register)
   const isAuthRoute = authRoutes.some((route) => pathname === route)
 
   // If user is authenticated and trying to access auth routes, redirect to profile
@@ -73,24 +71,10 @@ export function middleware(request) {
     return NextResponse.redirect(url)
   }
 
-  // For public routes, allow access
-  if (isPublicRoute) {
-    return NextResponse.next()
-  }
-
-  // For all other routes, continue
+  // Allow all other routes (including public routes)
   return NextResponse.next()
 }
 
 export const config = {
-  matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - api (API routes)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     */
-    '/((?!api|_next/static|_next/image|favicon.ico).*)',
-  ],
+  matcher: ['/profile/:path*', '/login', '/register'],
 }
