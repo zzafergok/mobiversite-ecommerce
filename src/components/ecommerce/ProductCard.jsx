@@ -34,8 +34,8 @@ export default function ProductCard({ product }) {
   }
 
   return (
-    <Card className='overflow-hidden group'>
-      <div className='cursor-pointer' onClick={() => router.push(`/products/${product.id}`)}>
+    <Card className='overflow-hidden group h-full flex flex-col'>
+      <div className='cursor-pointer flex-shrink-0' onClick={() => router.push(`/products/${product.id}`)}>
         <div className='relative aspect-square overflow-hidden'>
           <Image
             src={product.image}
@@ -43,11 +43,13 @@ export default function ProductCard({ product }) {
             fill
             className='object-contain p-4 group-hover:scale-105 transition-transform duration-300'
             sizes='(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw'
+            priority={false}
+            loading='lazy'
           />
         </div>
       </div>
 
-      <CardContent className='p-4'>
+      <CardContent className='p-4 flex-1 flex flex-col justify-between'>
         <h3
           className='text-sm font-medium text-gray-900 dark:text-white mb-2 line-clamp-2 hover:text-blue-600 transition-colors min-h-[2.5rem] cursor-pointer'
           onClick={() => router.push(`/products/${product.id}`)}

@@ -425,11 +425,22 @@ nav {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: scale(0.9);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
-    transform: scale(1);
+    transform: translateY(0);
+  }
+}
+
+@keyframes stableProductEnter {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -533,6 +544,46 @@ nav {
 
 .animate-fade-in {
   animation: fadeIn 0.3s ease-out;
+}
+
+.animate-stable-product-enter {
+  animation: stableProductEnter 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  contain: layout style;
+  will-change: opacity, transform;
+}
+
+.product-grid-container {
+  contain: layout style;
+  isolation: isolate;
+}
+
+.product-card-stable {
+  contain: layout style;
+  will-change: opacity, transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Prevent layout shifts during image loading */
+.product-card-stable img {
+  will-change: auto;
+}
+
+/* Optimize animations for better performance */
+.animate-stable-product-enter {
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .animate-stable-product-enter {
+    animation-duration: 0.1s !important;
+    animation-delay: 0s !important;
+  }
 }
 
 .animate-slide-in {
@@ -899,7 +950,7 @@ body[style*='overflow: hidden'] {
   .fold-cover\:space-y-1 > * + * {
     margin-top: 0.25rem !important;
   }
-  
+
   /* Profile specific optimizations */
   .sm\:flex-row {
     flex-direction: column !important;
@@ -1557,7 +1608,8 @@ body[data-scroll-locked][style*='margin-right'] {
 
 /* Mobile viewport fixes */
 @media (max-width: 767px) {
-  html, body {
+  html,
+  body {
     width: 100% !important;
     max-width: 100vw !important;
     overflow-x: hidden !important;
@@ -1565,11 +1617,11 @@ body[data-scroll-locked][style*='margin-right'] {
     padding: 0 !important;
     box-sizing: border-box !important;
   }
-  
+
   * {
     box-sizing: border-box !important;
   }
-  
+
   /* Prevent any scrollbar gutter on mobile */
   html {
     scrollbar-gutter: auto !important;
@@ -1637,7 +1689,7 @@ body[data-scroll-locked][style*='margin-right'] {
     left: 1rem;
     top: 5rem;
   }
-  
+
   .toast-container .max-w-md {
     max-width: none;
   }

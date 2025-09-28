@@ -13,7 +13,7 @@ function ProductsPageContent() {
   const [products, setProducts] = useState([])
   const [filteredProducts, setFilteredProducts] = useState([])
   const [displayedProducts, setDisplayedProducts] = useState([])
-  const [newlyLoadedProducts, setNewlyLoadedProducts] = useState([])
+  const [newlyLoadedProducts, setNewlyLoadedProducts] = useState(new Set())
   const [categories, setCategories] = useState([])
   const [loading, setLoading] = useState(true)
   const [loadingMore, setLoadingMore] = useState(false)
@@ -135,7 +135,7 @@ function ProductsPageContent() {
   useEffect(() => {
     const initialItems = filteredProducts.slice(0, INITIAL_LOAD)
     setDisplayedProducts(initialItems)
-    setNewlyLoadedProducts([])
+    setNewlyLoadedProducts(new Set())
     setHasMore(filteredProducts.length > INITIAL_LOAD)
   }, [filteredProducts])
 
@@ -152,37 +152,47 @@ function ProductsPageContent() {
       const newProducts = filteredProducts.slice(startIndex, endIndex)
 
       if (newProducts.length > 0) {
-        setNewlyLoadedProducts(newProducts.map((p) => p.id))
+        setNewlyLoadedProducts(new Set(newProducts.map((p) => p.id)))
         setDisplayedProducts((prev) => [...prev, ...newProducts])
         setPage((prev) => prev + 1)
         setHasMore(endIndex < filteredProducts.length)
 
         // Clear newly loaded state after animation
         setTimeout(() => {
-          setNewlyLoadedProducts([])
-        }, 600)
+          setNewlyLoadedProducts(new Set())
+        }, 1000)
       } else {
         setHasMore(false)
       }
 
       setLoadingMore(false)
-    }, 1200)
+    }, 600)
   }, [filteredProducts, page, loadingMore, hasMore])
 
-  // Infinite scroll handler
+  // Intersection Observer for better performance
   useEffect(() => {
-    const handleScroll = () => {
-      if (
-        window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - 1000 &&
-        !loadingMore &&
-        hasMore
-      ) {
-        loadMoreProducts()
-      }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !loadingMore && hasMore) {
+          loadMoreProducts()
+        }
+      },
+      {
+        rootMargin: '500px',
+        threshold: 0.1,
+      },
+    )
+
+    const sentinel = document.getElementById('scroll-sentinel')
+    if (sentinel) {
+      observer.observe(sentinel)
     }
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    return () => {
+      if (sentinel) {
+        observer.unobserve(sentinel)
+      }
+    }
   }, [loadMoreProducts, loadingMore, hasMore])
 
   if (loading) {
@@ -218,25 +228,32 @@ function ProductsPageContent() {
         </Card>
       ) : (
         <>
-          <div
-            className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-6 px-2 md:px-0'
-            style={{ contain: 'layout style' }}
-          >
-            {displayedProducts.map((product, index) => (
-              <div
-                key={`${product.id}-${index}`}
-                className={`${newlyLoadedProducts.includes(product.id) ? 'animate-fade-in opacity-0' : 'opacity-100'}`}
-                style={{
-                  animationDelay: newlyLoadedProducts.includes(product.id)
-                    ? `${newlyLoadedProducts.indexOf(product.id) * 100}ms`
-                    : '0ms',
-                  contain: 'layout',
-                }}
-              >
-                <ProductCard product={product} />
-              </div>
-            ))}
+          <div className='product-grid-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-6 px-2 md:px-0'>
+            {displayedProducts.map((product, index) => {
+              const isNewlyLoaded = newlyLoadedProducts.has(product.id)
+              const newProductsArray = Array.from(newlyLoadedProducts)
+              const animationIndex = newProductsArray.indexOf(product.id)
+
+              return (
+                <div
+                  key={`${product.id}-${index}`}
+                  className={`product-card-stable ${
+                    isNewlyLoaded ? 'animate-stable-product-enter opacity-0' : 'opacity-100'
+                  }`}
+                  style={{
+                    animationDelay:
+                      isNewlyLoaded && animationIndex >= 0 ? `${Math.min(animationIndex * 200, 800)}ms` : '0ms',
+                    animationFillMode: 'forwards',
+                  }}
+                >
+                  <ProductCard product={product} />
+                </div>
+              )
+            })}
           </div>
+
+          {/* Intersection observer sentinel */}
+          <div id='scroll-sentinel' className='h-4' />
 
           {loadingMore && (
             <Card className='mx-2 md:mx-0'>
