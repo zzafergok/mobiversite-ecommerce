@@ -1,14 +1,45 @@
 import axios from 'axios'
 
-// Production'da Vercel API endpoint'ini kullan
-const API_BASE_URL = process.env.NODE_ENV === 'production' ? '/api/db' : 'http://localhost:3000/api/db'
+// Production'da custom domain kullan, development'da local endpoint
+const API_BASE_URL =
+  process.env.NODE_ENV === 'production'
+    ? process.env.NEXT_PUBLIC_API_URL || 'https://www.mobiversite.store/api/db'
+    : 'http://localhost:3000/api/db'
 
 const vercelApi = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
+  timeout: 10000, // 10 seconds timeout
 })
+
+// Request interceptor for debugging
+vercelApi.interceptors.request.use(
+  (config) => {
+    console.log(`API Request: ${config.method?.toUpperCase()} ${config.url}`)
+    return config
+  },
+  (error) => {
+    console.error('API Request Error:', error)
+    return Promise.reject(error)
+  },
+)
+
+// Response interceptor for error handling
+vercelApi.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    console.error('API Response Error:', error.response?.status, error.response?.data || error.message)
+
+    // If custom domain fails, fallback to relative URLs in production
+    if (process.env.NODE_ENV === 'production' && error.code === 'ENOTFOUND') {
+      console.warn('Custom domain failed, consider using relative URLs')
+    }
+
+    return Promise.reject(error)
+  },
+)
 
 export const vercelApiService = {
   // Products
