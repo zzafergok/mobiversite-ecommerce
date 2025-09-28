@@ -67,7 +67,7 @@ function updateServiceConfig() {
   console.log('⚙️  Updating service configurations...')
 
   // Update jsonServerService.js
-  const servicePath = join(rootDir, 'src/services/ecommerce/jsonServerService.js')
+  const servicePath = join(rootDir, 'src/services/jsonServerService.js')
   let serviceContent = readFileSync(servicePath, 'utf8')
   serviceContent = serviceContent.replace(
     /const JSON_SERVER_BASE_URL = 'http:\/\/localhost:\d+'/,

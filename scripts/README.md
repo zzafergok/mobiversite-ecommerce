@@ -44,7 +44,7 @@ const PORTS = {
 
 ##### 3. Konfigürasyon Güncelleme
 
-- `src/services/ecommerce/jsonServerService.js` dosyasındaki API URL'ini günceller
+- `src/services/jsonServerService.js` dosyasındaki API URL'ini günceller
 - `package.json` içindeki json-server script'ini doğru port ile günceller
 
 ##### 4. Servis Başlatma Sırası
