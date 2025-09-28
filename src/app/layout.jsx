@@ -44,21 +44,21 @@ export default function RootLayout({ children }) {
               <WishlistProvider>
                 <ListsProvider>
                   <CookieConsentProvider>
-                      <div className='min-h-screen flex flex-col w-full'>
-                        <Navbar />
-                        <main className='flex-1 py-4 w-full px-0 md:px-4 md:pt-36'>{children}</main>
-                        <Footer />
-                        <MobileBottomNav />
-                        <CookieBanner />
-                        <CookieWidget />
-                        <ToastContainer />
-                      </div>
-                    </CookieConsentProvider>
-                  </ListsProvider>
-                </WishlistProvider>
-              </CartProvider>
-            </ToastProvider>
-          </AuthProvider>
+                    <div className='min-h-screen flex flex-col w-full'>
+                      <Navbar />
+                      <main className='flex-1 py-4 w-full px-0 md:px-4 md:pt-36'>{children}</main>
+                      <Footer />
+                      <MobileBottomNav />
+                      <CookieBanner />
+                      <CookieWidget />
+                      <ToastContainer />
+                    </div>
+                  </CookieConsentProvider>
+                </ListsProvider>
+              </WishlistProvider>
+            </CartProvider>
+          </ToastProvider>
+        </AuthProvider>
       </body>
     </html>
   )
