@@ -1,0 +1,1644 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Enhanced Light Mode Colors */
+  --background: 39 67% 95%;
+  --foreground: 0 0% 15%;
+  --card: 39 67% 98%;
+  --card-foreground: 0 0% 15%;
+  --popover: 39 67% 98%;
+  --popover-foreground: 0 0% 15%;
+  --primary: 21 100% 50%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 39 67% 90%;
+  --secondary-foreground: 0 0% 15%;
+  --muted: 39 67% 90%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 39 67% 90%;
+  --accent-foreground: 0 0% 15%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 21 100% 50%;
+  --radius: 0.5rem;
+
+  /* Enhanced Primary Color System - Light Mode */
+  --primary-50: 21 100% 97%;
+  --primary-100: 21 100% 94%;
+  --primary-200: 21 100% 88%;
+  --primary-300: 21 100% 76%;
+  --primary-400: 21 100% 63%;
+  --primary-500: 21 100% 56%;
+  --primary-600: 21 100% 50%;
+  --primary-700: 21 100% 44%;
+  --primary-800: 21 100% 38%;
+  --primary-900: 21 100% 25%;
+
+  /* Enhanced Accent Colors - Light Mode */
+  --accent-50: 39 67% 98%;
+  --accent-100: 39 67% 95%;
+  --accent-200: 39 67% 90%;
+  --accent-300: 39 67% 85%;
+  --accent-400: 39 67% 75%;
+  --accent-500: 39 67% 65%;
+  --accent-600: 39 67% 55%;
+  --accent-700: 39 67% 45%;
+  --accent-800: 39 67% 35%;
+  --accent-900: 39 67% 25%;
+
+  /* Enhanced Blue Colors - Light Mode */
+  --blue-50: 21 100% 97%;
+  --blue-100: 21 100% 94%;
+  --blue-200: 21 100% 88%;
+  --blue-300: 21 100% 76%;
+  --blue-400: 21 100% 63%;
+  --blue-500: 21 100% 56%;
+  --blue-600: 21 100% 50%;
+
+  /* Enhanced Teal Colors - Light Mode */
+  --teal-50: 166 100% 97%;
+  --teal-100: 167 85% 89%;
+  --teal-200: 168 84% 78%;
+  --teal-300: 171 77% 64%;
+  --teal-400: 172 66% 50%;
+  --teal-500: 173 80% 40%;
+  --teal-600: 175 84% 32%;
+
+  /* Semantic Colors - Light Mode */
+  --success: 142 76% 36%;
+  --warning: 38 92% 50%;
+  --error: 350 89% 60%;
+  --info: 21 100% 56%;
+}
+
+.dark {
+  /* Enhanced Dark Mode Colors */
+  --background: 0 0% 3.9%;
+  --foreground: 39 67% 95%;
+  --card: 0 0% 6%;
+  --card-foreground: 39 67% 95%;
+  --popover: 0 0% 6%;
+  --popover-foreground: 39 67% 95%;
+  --primary: 21 100% 50%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 0 0% 15%;
+  --secondary-foreground: 39 67% 95%;
+  --muted: 0 0% 15%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 0 0% 15%;
+  --accent-foreground: 39 67% 95%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 0 0% 15%;
+  --input: 0 0% 15%;
+  --ring: 21 100% 50%;
+
+  /* Enhanced Primary Color System - Dark Mode */
+  --primary-50: 21 100% 5%;
+  --primary-100: 21 100% 10%;
+  --primary-200: 21 100% 15%;
+  --primary-300: 21 100% 25%;
+  --primary-400: 21 100% 38%;
+  --primary-500: 21 100% 44%;
+  --primary-600: 21 100% 50%;
+  --primary-700: 21 100% 56%;
+  --primary-800: 21 100% 63%;
+  --primary-900: 21 100% 76%;
+
+  /* Enhanced Accent Colors - Dark Mode */
+  --accent-50: 0 0% 5%;
+  --accent-100: 0 0% 10%;
+  --accent-200: 0 0% 15%;
+  --accent-300: 0 0% 25%;
+  --accent-400: 0 0% 35%;
+  --accent-500: 0 0% 45%;
+  --accent-600: 0 0% 55%;
+  --accent-700: 0 0% 65%;
+  --accent-800: 0 0% 75%;
+  --accent-900: 0 0% 85%;
+
+  /* Enhanced Blue Colors - Dark Mode */
+  --blue-50: 21 100% 5%;
+  --blue-100: 21 100% 10%;
+  --blue-200: 21 100% 15%;
+  --blue-300: 21 100% 25%;
+  --blue-400: 21 100% 38%;
+  --blue-500: 21 100% 44%;
+  --blue-600: 21 100% 50%;
+
+  /* Enhanced Teal Colors - Dark Mode */
+  --teal-50: 166 100% 5%;
+  --teal-100: 164 86% 12%;
+  --teal-200: 166 85% 20%;
+  --teal-300: 168 82% 28%;
+  --teal-400: 170 77% 36%;
+  --teal-500: 172 66% 50%;
+  --teal-600: 173 80% 65%;
+
+  /* Semantic Colors - Dark Mode */
+  --success: 142 65% 55%;
+  --warning: 38 80% 65%;
+  --error: 350 70% 70%;
+  --info: 21 100% 44%;
+}
+
+/* Base Styles */
+* {
+  border-color: hsl(var(--border));
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+/* Enhanced scrollbar styles for dark theme */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(245 245 245);
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: rgb(23 23 23);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(163 163 163);
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgb(82 82 82);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(115 115 115);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgb(115 115 115);
+}
+
+/* Disable theme-related transitions for instant switching */
+html.light *,
+html.dark *,
+html.light *::before,
+html.light *::after,
+html.dark *::before,
+html.dark *::after {
+  transition: none !important;
+}
+
+/* Enhanced focus styles for dark theme */
+*:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
+/* Text selection colors for dark theme */
+::selection {
+  background-color: hsl(var(--primary) / 0.3);
+  color: hsl(var(--primary-foreground));
+}
+
+.dark ::selection {
+  background-color: hsl(var(--primary) / 0.3);
+  color: hsl(var(--background));
+}
+
+/* Tema başlangıç durumu - FOUC önleme */
+html:not(.light):not(.dark) {
+  background-color: hsl(39, 67%, 95%);
+  color: hsl(0, 0%, 15%);
+}
+
+html:not(.light):not(.dark).theme-loading {
+  visibility: hidden;
+}
+
+html.light,
+html.dark {
+  visibility: visible;
+}
+
+/* Base Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+html {
+  background: var(--background);
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-feature-settings:
+    'rlig' 1,
+    'calt' 1;
+}
+
+/* No theme switching transitions needed for instant switching */
+
+/* Prevent flash of unstyled content */
+html {
+  visibility: visible;
+}
+
+html.theme-loading {
+  visibility: hidden;
+}
+
+/* Global Element Styles */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+section,
+main,
+header,
+footer {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-neutral-900;
+}
+
+/* Modern Scrollbar Styles */
+.scrollbar-modern {
+  scrollbar-width: thin;
+  scrollbar-color: var(--neutral-300) var(--neutral-100);
+}
+
+.scrollbar-modern::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scrollbar-modern::-webkit-scrollbar-track {
+  background: var(--neutral-100);
+  border-radius: 3px;
+}
+
+.scrollbar-modern::-webkit-scrollbar-thumb {
+  background: var(--neutral-300);
+  border-radius: 3px;
+}
+
+.scrollbar-modern::-webkit-scrollbar-thumb:hover {
+  background: var(--neutral-400);
+}
+
+.dark .scrollbar-modern {
+  scrollbar-color: var(--neutral-600) var(--neutral-800);
+}
+
+.dark .scrollbar-modern::-webkit-scrollbar-track {
+  background: var(--neutral-800);
+}
+
+.dark .scrollbar-modern::-webkit-scrollbar-thumb {
+  background: var(--neutral-600);
+}
+
+.dark .scrollbar-modern::-webkit-scrollbar-thumb:hover {
+  background: var(--neutral-500);
+}
+
+/* Z-Index Management */
+.z-navbar {
+  z-index: 1000;
+}
+.z-dropdown {
+  z-index: 1100;
+}
+.z-modal {
+  z-index: 1200;
+}
+.z-popover {
+  z-index: 1300;
+}
+.z-tooltip {
+  z-index: 1400;
+}
+.z-toast {
+  z-index: 9999;
+}
+
+nav {
+  z-index: 1000 !important;
+}
+
+/* Navbar specific overrides */
+.navbar-fixed {
+  z-index: 1000 !important;
+}
+
+[data-radix-tooltip-content] {
+  z-index: 1400 !important;
+}
+[data-radix-alert-dialog-overlay] {
+  z-index: 10001 !important;
+}
+[data-radix-alert-dialog-content] {
+  z-index: 10002 !important;
+}
+[data-radix-dialog-overlay] {
+  z-index: 10001 !important;
+}
+[data-radix-dialog-content] {
+  z-index: 10002 !important;
+}
+
+/* Animations */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+@keyframes shrink {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+/* Animation Classes */
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.animate-slide-in {
+  animation: slideInRight 0.3s ease-out;
+}
+
+.animate-slide-in-up {
+  animation: slideInUp 0.3s ease-out;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-slide-in-down {
+  animation: slideInDown 0.3s ease-out;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.2s ease-out;
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+  background: linear-gradient(90deg, transparent, hsla(39, 67%, 95%, 0.1), transparent);
+  background-size: 200px 100%;
+}
+
+/* Toast System */
+.toast-container {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999 !important;
+}
+
+.toast-container > * {
+  pointer-events: auto;
+}
+
+.toast-item {
+  transform: translateX(100%);
+  transition:
+    transform 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
+}
+
+.toast-item.toast-enter {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.toast-item.toast-exit {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.toast-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: currentColor;
+  opacity: 0.6;
+  animation: shrink linear;
+}
+
+/* Backdrop Blur Support */
+@supports (backdrop-filter: blur(8px)) {
+  .toast-backdrop-blur {
+    backdrop-filter: blur(8px);
+  }
+  .backdrop-blur-glass {
+    backdrop-filter: blur(12px) saturate(180%);
+    background-color: hsla(39, 67%, 95%, 0.8);
+  }
+}
+
+@supports not (backdrop-filter: blur(8px)) {
+  .toast-backdrop-blur {
+    background-color: hsla(39, 67%, 95%, 0.95);
+  }
+}
+
+.dark .backdrop-blur-glass {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Card Effects */
+.card-lift {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.dark .card-lift:hover {
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.4),
+    0 10px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.card-glow {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-glow:hover {
+  box-shadow:
+    0 0 0 1px var(--primary-200),
+    0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.dark .card-glow:hover {
+  box-shadow:
+    0 0 0 1px var(--primary-800),
+    0 10px 15px -3px rgba(0, 0, 0, 0.4);
+}
+
+/* Glass Effects */
+.glass {
+  background: hsla(39, 67%, 95%, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid hsla(39, 67%, 95%, 0.2);
+}
+
+.dark .glass {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid hsla(39, 67%, 95%, 0.1);
+}
+
+.dark .bg-primary-subtle {
+  background-color: hsl(200, 25%, 12%);
+}
+
+.dark .border-primary-subtle {
+  border-color: hsl(200, 20%, 20%);
+}
+
+/* Gradient Text */
+.gradient-text-primary {
+  @apply bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent;
+}
+
+.gradient-text-rainbow {
+  @apply bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 via-blue-500 to-purple-500 bg-clip-text text-transparent;
+}
+
+/* Layout Utilities */
+.grid-auto-fit {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+.grid-auto-fill {
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.grid-responsive {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.container-fluid {
+  width: 100%;
+  max-width: none;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Interactive Elements */
+.interactive-element {
+  @apply transition-all duration-200 ease-in-out;
+  @apply hover:scale-105 active:scale-95;
+  @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+}
+
+.interactive-element:disabled {
+  @apply opacity-50 cursor-not-allowed;
+  transform: none !important;
+}
+
+/* Code Styling */
+.code-block {
+  @apply bg-neutral-900 text-neutral-100 rounded-lg p-4 overflow-x-auto text-sm font-mono;
+  line-height: 1.6;
+}
+
+.code-block .line-number {
+  @apply text-neutral-500 select-none mr-4 text-right;
+  min-width: 2rem;
+  display: inline-block;
+}
+
+.code-block .highlight-line {
+  @apply bg-neutral-800 -mx-4 px-4;
+}
+
+/* Fix Radix UI Dropdown Scroll Lock Issue */
+/* Prevent body from being locked when dropdown opens */
+body[style*='overflow: hidden'] {
+  overflow: visible !important;
+  padding-right: 0 !important;
+  pointer-events: auto !important;
+}
+
+.code-preview {
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+  line-height: 1.5;
+}
+
+.code-preview .keyword {
+  color: #ff79c6;
+}
+.code-preview .string {
+  color: #f1fa8c;
+}
+.code-preview .function {
+  color: #50fa7b;
+}
+.code-preview .comment {
+  color: #6272a4;
+  font-style: italic;
+}
+
+/* Component Demo Specific */
+.demo-container {
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.demo-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(236, 72, 153, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.component-demo-modal [data-radix-dialog-content] {
+  max-width: 95vw !important;
+  max-height: 95vh !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.props-table-container {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--neutral-400) var(--neutral-100);
+}
+
+.props-table-container::-webkit-scrollbar {
+  height: 6px;
+}
+.props-table-container::-webkit-scrollbar-track {
+  background: var(--neutral-100);
+}
+.props-table-container::-webkit-scrollbar-thumb {
+  background: var(--neutral-400);
+  border-radius: 3px;
+}
+
+.dark .props-table-container::-webkit-scrollbar-track {
+  background: var(--neutral-800);
+}
+.dark .props-table-container::-webkit-scrollbar-thumb {
+  background: var(--neutral-600);
+}
+
+/* Utility Classes */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only-focusable {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sr-only-focusable:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0.25rem 0.5rem;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  border: 2px solid var(--primary-500);
+  border-radius: 0.25rem;
+  background: var(--primary-50);
+  color: var(--primary-900);
+}
+
+.will-change-transform {
+  will-change: transform;
+}
+.will-change-opacity {
+  will-change: opacity;
+}
+.will-change-auto {
+  will-change: auto;
+}
+
+/* Galaxy Z Fold4 Specific Breakpoints */
+/* Cover Screen - 412px x 915px (closed) */
+@media (max-width: 412px) and (min-height: 900px) {
+  .fold-cover\:block {
+    display: block !important;
+  }
+  .fold-cover\:hidden {
+    display: none !important;
+  }
+  .fold-cover\:inline {
+    display: inline !important;
+  }
+  .fold-cover\:grid-cols-1 {
+    grid-template-columns: 1fr !important;
+  }
+  .fold-cover\:flex-col {
+    flex-direction: column !important;
+  }
+  .fold-cover\:text-xs {
+    font-size: 0.75rem !important;
+    line-height: 1rem !important;
+  }
+  .fold-cover\:text-sm {
+    font-size: 0.875rem !important;
+    line-height: 1.25rem !important;
+  }
+  .fold-cover\:p-2 {
+    padding: 0.5rem !important;
+  }
+  .fold-cover\:px-2 {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+  .fold-cover\:h-12 {
+    height: 3rem !important;
+  }
+  .fold-cover\:space-y-1 > * + * {
+    margin-top: 0.25rem !important;
+  }
+  
+  /* Profile specific optimizations */
+  .sm\:flex-row {
+    flex-direction: column !important;
+  }
+  .sm\:text-left {
+    text-align: center !important;
+  }
+  .sm\:justify-start {
+    justify-content: center !important;
+  }
+}
+
+/* Main Screen - 884px x 1104px (open) */
+@media (min-width: 413px) and (max-width: 884px) and (min-height: 1100px) {
+  .fold-main\:block {
+    display: block !important;
+  }
+  .fold-main\:hidden {
+    display: none !important;
+  }
+  .fold-main\:inline {
+    display: inline !important;
+  }
+  .fold-main\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+  .fold-main\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  .fold-main\:flex-row {
+    flex-direction: row !important;
+  }
+  .fold-main\:text-sm {
+    font-size: 0.875rem !important;
+    line-height: 1.25rem !important;
+  }
+  .fold-main\:text-lg {
+    font-size: 1.125rem !important;
+    line-height: 1.75rem !important;
+  }
+  .fold-main\:p-4 {
+    padding: 1rem !important;
+  }
+  .fold-main\:px-4 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  .fold-main\:h-16 {
+    height: 4rem !important;
+  }
+  .fold-main\:space-y-2 > * + * {
+    margin-top: 0.5rem !important;
+  }
+  .fold-main\:gap-2 {
+    gap: 0.5rem !important;
+  }
+}
+
+/* Ultra-narrow screens - Galaxy Fold 4 and similar (280px) */
+@media (max-width: 320px) {
+  /* Typography adjustments */
+  .text-4xl,
+  h1 {
+    font-size: 1.75rem !important;
+    line-height: 2rem !important;
+  }
+  .text-3xl,
+  h2 {
+    font-size: 1.5rem !important;
+    line-height: 1.75rem !important;
+  }
+  .text-2xl,
+  h3 {
+    font-size: 1.25rem !important;
+    line-height: 1.5rem !important;
+  }
+  .text-xl {
+    font-size: 1.125rem !important;
+    line-height: 1.5rem !important;
+  }
+  .text-lg {
+    font-size: 1rem !important;
+    line-height: 1.25rem !important;
+  }
+
+  /* Container adjustments */
+  .container,
+  .max-w-6xl,
+  .max-w-4xl {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+    max-width: 100% !important;
+  }
+
+  /* Grid adjustments - force single column */
+  .grid-cols-1,
+  .grid-cols-2,
+  .grid-cols-3,
+  .grid-cols-4,
+  .sm\\:grid-cols-2,
+  .md\\:grid-cols-3,
+  .lg\\:grid-cols-3,
+  .lg\\:grid-cols-4,
+  .xl\\:grid-cols-4 {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Flex adjustments */
+  .flex-row,
+  .sm\\:flex-row {
+    flex-direction: column !important;
+  }
+
+  .justify-between {
+    justify-content: flex-start !important;
+  }
+
+  /* Button adjustments */
+  .px-6,
+  .px-8 {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+
+  .py-3 {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+
+  /* Navbar adjustments */
+  .navbar-brand {
+    font-size: 1rem !important;
+  }
+
+  /* Product card adjustments */
+  .aspect-square {
+    aspect-ratio: 1 / 1 !important;
+    min-height: 120px !important;
+  }
+
+  /* Form adjustments */
+  .pl-10 {
+    padding-left: 2rem !important;
+  }
+
+  /* Spacing adjustments */
+  .space-x-4 > * + * {
+    margin-left: 0.25rem !important;
+  }
+  .space-y-8 > * + * {
+    margin-top: 1rem !important;
+  }
+  .space-y-6 > * + * {
+    margin-top: 0.75rem !important;
+  }
+  .gap-8 {
+    gap: 1rem !important;
+  }
+  .gap-6 {
+    gap: 0.75rem !important;
+  }
+  .gap-4 {
+    gap: 0.5rem !important;
+  }
+
+  /* Modal adjustments */
+  .max-w-md {
+    max-width: 100% !important;
+    margin: 0.5rem !important;
+  }
+
+  /* Cart specific adjustments */
+  .lg\\:col-span-2 {
+    grid-column: span 1 !important;
+  }
+  .lg\\:col-span-1 {
+    grid-column: span 1 !important;
+  }
+
+  /* Profile layout adjustments */
+  .lg\\:grid-cols-4 {
+    grid-template-columns: 1fr !important;
+  }
+  .lg\\:col-span-3 {
+    grid-column: span 1 !important;
+  }
+
+  /* Hide less important elements on ultra-narrow screens */
+  .hidden-on-fold {
+    display: none !important;
+  }
+
+  /* Compact navbar for fold */
+  .fold-compact-nav {
+    padding: 0.25rem 0.5rem !important;
+  }
+
+  .fold-compact-nav .text-xl {
+    font-size: 0.875rem !important;
+  }
+
+  /* Stack elements that are normally side by side */
+  .fold-stack {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  /* Reduce product grid padding */
+  .p-4 {
+    padding: 0.5rem !important;
+  }
+  .p-6 {
+    padding: 0.75rem !important;
+  }
+
+  /* Adjust image containers */
+  .relative.aspect-square {
+    min-height: 100px !important;
+  }
+
+  /* Compact buttons */
+  .min-h-\[2\.5rem\] {
+    min-height: 2rem !important;
+  }
+  .min-w-\[2\.5rem\] {
+    min-width: 2rem !important;
+  }
+
+  /* Text truncation for very narrow screens */
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+}
+
+/* Responsive Design - Standard mobile */
+@media (max-width: 640px) {
+  .text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+  .text-xl {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+  .space-x-4 > * + * {
+    margin-left: 0.5rem;
+  }
+
+  .toast-container {
+    top: 80px !important;
+    left: 1rem !important;
+    right: 1rem !important;
+    transform: none !important;
+  }
+
+  .toast-container > * {
+    width: 100%;
+    max-width: none;
+  }
+
+  .component-demo-modal .dialog-content {
+    margin: 1rem;
+    width: calc(100% - 2rem);
+    max-height: calc(100vh - 2rem);
+  }
+
+  /* Standard mobile grid adjustments */
+  .grid-cols-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+  .sm\\:grid-cols-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 640px) {
+  .sm\:flex-row {
+    flex-direction: row;
+  }
+  .grid-responsive {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  .container-fluid {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  .component-demo-modal [data-radix-dialog-content] {
+    max-width: 90vw !important;
+    max-height: 90vh !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-responsive {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .container-fluid {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  .component-demo-modal [data-radix-dialog-content] {
+    max-width: 85vw !important;
+    max-height: 85vh !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  .grid-responsive {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .component-demo-modal [data-radix-dialog-content] {
+    max-width: 80vw !important;
+    max-height: 80vh !important;
+  }
+}
+
+/* Container Queries */
+@container (min-width: 768px) {
+  .container-md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@container (min-width: 1024px) {
+  .container-lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Mobile Navigation */
+@media (max-width: 767px) {
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+  }
+
+  .mobile-menu-content {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 80%;
+    max-width: 320px;
+    background: white;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .dark .mobile-menu-content {
+    background: var(--neutral-900);
+  }
+  .mobile-menu.open .mobile-menu-content {
+    transform: translateX(0);
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .card {
+    border-width: 2px;
+  }
+  .button {
+    border-width: 2px;
+  }
+  .input {
+    border-width: 2px;
+  }
+}
+
+/* Print Styles */
+@media print {
+  * {
+    background: transparent !important;
+    color: #fffafa !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+  abbr[title]:after {
+    content: ' (' attr(title) ')';
+  }
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+  thead {
+    display: table-header-group;
+  }
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+  img {
+    max-width: 100% !important;
+  }
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-break-before {
+    page-break-before: always;
+  }
+
+  .print-break-after {
+    page-break-after: always;
+  }
+
+  .print-break-inside-avoid {
+    page-break-inside: avoid;
+  }
+}
+
+/* Prevent layout shift during dropdown operations */
+.layout-stable {
+  contain: layout style;
+}
+
+/* Prevent horizontal scrollbar flicker */
+.prevent-horizontal-scroll {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Stabilized container for dropdowns */
+.stabilized-container {
+  position: relative;
+  isolation: isolate;
+  contain: layout;
+}
+
+/* Fix for iOS Safari bouncing */
+@supports (-webkit-touch-callout: none) {
+  .ios-dropdown-fix {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+}
+
+/* GPU acceleration for smooth animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Prevent text selection during dropdown interactions */
+.dropdown-no-select {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* Enhanced Z-Index Management for Navbar Components */
+.navbar-theme-toggle {
+  z-index: 10000 !important;
+}
+
+.navbar-language-toggle {
+  z-index: 9999 !important;
+}
+
+.navbar-user-menu {
+  z-index: 9998 !important;
+}
+
+/* Radix UI Portal Z-Index Overrides for Navbar */
+[data-radix-portal] {
+  z-index: 9999 !important;
+}
+
+[data-radix-dropdown-menu-content] {
+  z-index: 9999 !important;
+}
+
+[data-radix-select-content] {
+  z-index: 9999 !important;
+}
+
+[data-radix-popover-content] {
+  z-index: 9999 !important;
+}
+
+/* Navbar Specific Dropdown Positioning */
+.navbar-dropdown {
+  position: fixed !important;
+  z-index: 9999 !important;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+/* Smooth navbar transitions */
+.navbar-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Mobile menu overlay */
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 9998;
+}
+
+/* Scrollbar compensation utilities */
+.scrollbar-compensated {
+  padding-right: var(--scrollbar-width, 0px) !important;
+}
+
+.no-scrollbar-shift {
+  scrollbar-gutter: stable;
+}
+
+/* Dropdown specific improvements */
+.dropdown-container {
+  position: relative;
+  isolation: isolate;
+}
+
+.dropdown-content {
+  position: fixed;
+  z-index: 9999;
+  contain: layout;
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Enhanced dropdown animations without layout shift */
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.dropdown-animate-in {
+  animation: dropdownFadeIn 0.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Prevent body scroll compensation */
+body.dropdown-open {
+  overflow: hidden;
+  padding-right: var(--scrollbar-width, 0px) !important;
+  margin-right: calc(var(--scrollbar-width, 0px)) !important;
+}
+
+/* Mobile dropdown adjustments */
+@media (max-width: 768px) {
+  .dropdown-content {
+    max-width: calc(100vw - 2rem);
+    margin: 0 1rem;
+  }
+}
+
+/* RADİX UI SCROLL LOCK - MAXIMUM SPESİFİSİTE OVERRIDE */
+html body[data-scroll-locked],
+html body[data-scroll-locked][style],
+body[data-scroll-locked][style*='margin-right'] {
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+  margin-top: 0px !important;
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+  padding-top: 0px !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+/* Inline style attribute override için daha spesifik seçici */
+[data-scroll-locked][style*='margin-right: 8px'] {
+  margin-right: 0px !important;
+}
+
+[data-scroll-locked][style*='margin-right:8px'] {
+  margin-right: 0px !important;
+}
+
+/* Modern scrollbar gutter desteği - Mobilde devre dışı */
+@media (min-width: 768px) {
+  html {
+    scrollbar-gutter: stable both-edges;
+  }
+}
+
+@supports (scrollbar-gutter: stable) {
+  @media (min-width: 768px) {
+    html {
+      scrollbar-gutter: stable;
+    }
+
+    body {
+      scrollbar-gutter: stable;
+    }
+  }
+}
+
+/* Safe area handling for mobile bottom navigation */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Mobile viewport fixes */
+@media (max-width: 767px) {
+  html, body {
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+  
+  * {
+    box-sizing: border-box !important;
+  }
+  
+  /* Prevent any scrollbar gutter on mobile */
+  html {
+    scrollbar-gutter: auto !important;
+  }
+}
+
+/* Toast animations */
+@keyframes slide-in-from-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out-to-right {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: translateX(100%) scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(0) scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-in {
+  animation: bounce-in 0.5s ease-out;
+}
+
+.animate-out {
+  animation: slide-out-to-right 0.3s ease-in forwards;
+}
+
+/* Toast hover effects */
+.toast-hover:hover {
+  transform: translateY(-2px);
+  transition: transform 0.2s ease;
+}
+
+/* Mobile toast responsive */
+@media (max-width: 640px) {
+  .toast-container {
+    right: 1rem;
+    left: 1rem;
+    top: 5rem;
+  }
+  
+  .toast-container .max-w-md {
+    max-width: none;
+  }
+}
