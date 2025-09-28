@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 import { useState, useEffect, useMemo } from 'react'
 
 /**
@@ -18,13 +19,13 @@ export function useFormChanges(initialData, currentData, excludeFields = []) {
   // Deep comparison için helper fonksiyon
   const deepEqual = (obj1, obj2, exclude = []) => {
     if (obj1 === obj2) return true
-    
+
     if (obj1 == null || obj2 == null) return obj1 === obj2
-    
+
     if (typeof obj1 !== 'object' || typeof obj2 !== 'object') return obj1 === obj2
 
-    const keys1 = Object.keys(obj1).filter(key => !exclude.includes(key))
-    const keys2 = Object.keys(obj2).filter(key => !exclude.includes(key))
+    const keys1 = Object.keys(obj1).filter((key) => !exclude.includes(key))
+    const keys2 = Object.keys(obj2).filter((key) => !exclude.includes(key))
 
     if (keys1.length !== keys2.length) return false
 
@@ -39,33 +40,31 @@ export function useFormChanges(initialData, currentData, excludeFields = []) {
   // Değişen alanları bul
   const getChangedFields = (original, current, exclude = [], path = '') => {
     const changes = {}
-    
+
     if (!original || !current) return changes
 
-    const allKeys = new Set([
-      ...Object.keys(original || {}),
-      ...Object.keys(current || {})
-    ])
+    const allKeys = new Set([...Object.keys(original || {}), ...Object.keys(current || {})])
 
     for (let key of allKeys) {
       if (exclude.includes(key)) continue
-      
+
       const currentPath = path ? `${path}.${key}` : key
-      
-      if (typeof original[key] === 'object' && 
-          typeof current[key] === 'object' && 
-          original[key] !== null && 
-          current[key] !== null &&
-          !Array.isArray(original[key]) &&
-          !Array.isArray(current[key])) {
-        
+
+      if (
+        typeof original[key] === 'object' &&
+        typeof current[key] === 'object' &&
+        original[key] !== null &&
+        current[key] !== null &&
+        !Array.isArray(original[key]) &&
+        !Array.isArray(current[key])
+      ) {
         // Nested object karşılaştırması
         const nestedChanges = getChangedFields(original[key], current[key], [], currentPath)
         Object.assign(changes, nestedChanges)
       } else if (!deepEqual(original[key], current[key])) {
         changes[currentPath] = {
           old: original[key],
-          new: current[key]
+          new: current[key],
         }
       }
     }
@@ -82,20 +81,20 @@ export function useFormChanges(initialData, currentData, excludeFields = []) {
     const changes = getChangedFields(originalData, currentData, excludeFields)
     return {
       hasChanges: Object.keys(changes).length > 0,
-      changedFields: changes
+      changedFields: changes,
     }
   }, [originalData, currentData, excludeFields])
 
   // Sadece değişen verileri döndür
   const getChangedData = () => {
     if (!hasChanges) return {}
-    
+
     const result = {}
-    
-    Object.keys(changedFields).forEach(path => {
+
+    Object.keys(changedFields).forEach((path) => {
       const keys = path.split('.')
       let current = result
-      
+
       // Nested path oluştur
       for (let i = 0; i < keys.length - 1; i++) {
         if (!current[keys[i]]) {
@@ -103,12 +102,12 @@ export function useFormChanges(initialData, currentData, excludeFields = []) {
         }
         current = current[keys[i]]
       }
-      
+
       // Son key'e değeri ata
       const lastKey = keys[keys.length - 1]
       current[lastKey] = changedFields[path].new
     })
-    
+
     return result
   }
 
@@ -122,7 +121,7 @@ export function useFormChanges(initialData, currentData, excludeFields = []) {
     changedFields,
     getChangedData,
     resetChanges,
-    originalData
+    originalData,
   }
 }
 
