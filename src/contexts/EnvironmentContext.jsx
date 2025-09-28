@@ -5,19 +5,20 @@ import { createContext, useContext, useState, useEffect } from 'react'
 const EnvironmentContext = createContext()
 
 export function EnvironmentProvider({ children }) {
-  // Production'da static data, development'da json-server kullan
-  const defaultEnvironment = process.env.NODE_ENV === 'production' ? 'production' : 'json-server'
+  // Production'da zorla static data kullan
+  const isProduction = process.env.NODE_ENV === 'production'
+  const defaultEnvironment = isProduction ? 'production' : 'json-server'
   const [environment, setEnvironment] = useState(defaultEnvironment) // 'json-server' | 'neon-db' | 'production'
 
   // LocalStorage'dan environment seçimini yükle (sadece development'da)
   useEffect(() => {
-    if (typeof window !== 'undefined' && process.env.NODE_ENV !== 'production') {
+    if (typeof window !== 'undefined' && !isProduction) {
       const savedEnvironment = localStorage.getItem('environment')
       if (savedEnvironment && ['json-server', 'neon-db', 'production'].includes(savedEnvironment)) {
         setEnvironment(savedEnvironment)
       }
     }
-  }, [])
+  }, [isProduction])
 
   // Environment değiştiğinde localStorage'a kaydet
   useEffect(() => {
@@ -27,7 +28,8 @@ export function EnvironmentProvider({ children }) {
   }, [environment])
 
   const switchEnvironment = (newEnvironment) => {
-    if (['json-server', 'neon-db', 'production'].includes(newEnvironment)) {
+    // Production'da environment switch etmeye izin verme
+    if (!isProduction && ['json-server', 'neon-db', 'production'].includes(newEnvironment)) {
       setEnvironment(newEnvironment)
     }
   }
