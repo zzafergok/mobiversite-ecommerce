@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+
 import { PageLoadingSpinner, ProductsLoadingSpinner, OrderCompletionSpinner, SimpleSpinner } from './Spinners'
 
 const EcommerceLoader = ({

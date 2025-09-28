@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { execSync, spawn } from 'child_process'
-import { readFileSync, writeFileSync } from 'fs'
 import { fileURLToPath } from 'url'
 import { dirname, join } from 'path'
+import { execSync, spawn } from 'child_process'
+import { readFileSync, writeFileSync } from 'fs'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)

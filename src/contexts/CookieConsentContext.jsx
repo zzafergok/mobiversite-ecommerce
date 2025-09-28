@@ -4,18 +4,18 @@ import { createContext, useContext, useState, useEffect } from 'react'
 
 const CookieConsentContext = createContext()
 
-const CONSENT_STORAGE_KEY = 'cookie-consent-preferences'
 const CONSENT_EXPIRY_KEY = 'cookie-consent-expiry'
+const CONSENT_STORAGE_KEY = 'cookie-consent-preferences'
 
 export function CookieConsentProvider({ children }) {
-  const [consentGiven, setConsentGiven] = useState(false)
-  const [showBanner, setShowBanner] = useState(false)
   const [preferences, setPreferences] = useState({
     essential: true, // Always true, can't be disabled
     analytics: false,
     marketing: false,
     functional: false,
   })
+  const [showBanner, setShowBanner] = useState(false)
+  const [consentGiven, setConsentGiven] = useState(false)
 
   useEffect(() => {
     checkExistingConsent()

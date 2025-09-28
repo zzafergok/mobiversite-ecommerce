@@ -1,25 +1,31 @@
 'use client'
 
-import { useState } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+
+import { useState } from 'react'
+
+import { Minus, Plus, Trash2, ShoppingBag, ArrowLeft, Heart, Star } from 'lucide-react'
+
+import { useAuth } from '@/contexts/AuthContext'
 import { useCart } from '@/contexts/CartContext'
 import { useWishlist } from '@/contexts/WishlistContext'
-import { useAuth } from '@/contexts/AuthContext'
-import useApiService from '@/hooks/ecommerce/useApiService'
-import { Minus, Plus, Trash2, ShoppingBag, ArrowLeft, Heart, Star } from 'lucide-react'
-import { Card, CardContent } from '@/components/core/card'
-import { Button } from '@/components/core/button'
+
+import useApiService from '@/hooks/useApiService'
+
 import { Badge } from '@/components/core/badge'
+import { Button } from '@/components/core/button'
 import { Separator } from '@/components/core/separator'
+import { Card, CardContent } from '@/components/core/card'
 
 export default function CartPage() {
-  const { items, updateQuantity, removeFromCart, getCartTotal, clearCart } = useCart()
-  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist()
-  const { isAuthenticated, user } = useAuth()
-  const [loading, setLoading] = useState(false)
   const router = useRouter()
   const apiService = useApiService()
+  const { isAuthenticated, user } = useAuth()
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist()
+  const { items, updateQuantity, removeFromCart, getCartTotal, clearCart } = useCart()
+
+  const [loading, setLoading] = useState(false)
 
   const handleCheckout = async () => {
     if (!isAuthenticated) {

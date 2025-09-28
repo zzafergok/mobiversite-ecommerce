@@ -1,31 +1,36 @@
 'use client'
 
-import { useState, useEffect, use } from 'react'
 import { useRouter } from 'next/navigation'
-import { useLists } from '@/contexts/ListsContext'
-import { Button } from '@/components/core/button'
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/core/dialog'
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from '@/components/core/alert-dialog'
-import { Input } from '@/components/core/input'
-import { Textarea } from '@/components/core/textarea'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/core/card'
-import { Badge } from '@/components/core/badge'
-import ProductCard from '@/components/ecommerce/ProductCard'
+
+import { useState, useEffect, use } from 'react'
+
 import { ArrowLeft, Edit2, Trash2, ListX, Plus } from 'lucide-react'
 
+import { useLists } from '@/contexts/ListsContext'
+
+import {
+  AlertDialog,
+  AlertDialogTitle,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogDescription,
+} from '@/components/core/alert-dialog'
+import { Input } from '@/components/core/input'
+import { Badge } from '@/components/core/badge'
+import { Button } from '@/components/core/button'
+import { Textarea } from '@/components/core/textarea'
+import ProductCard from '@/components/ecommerce/ProductCard'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/core/card'
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/core/dialog'
+
 export default function ListDetailPage({ params }) {
-  const resolvedParams = use(params)
   const router = useRouter()
+  const resolvedParams = use(params)
   const { lists, updateList, deleteList, removeProductFromList, loading } = useLists()
+
   const [list, setList] = useState(null)
   const [isEditModalOpen, setIsEditModalOpen] = useState(false)
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)

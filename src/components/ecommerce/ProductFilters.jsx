@@ -1,19 +1,20 @@
 'use client'
 
 import { Search } from 'lucide-react'
-import { Button } from '@/components/core/button'
+
 import { Card } from '@/components/core/card'
 import { Input } from '@/components/core/input'
+import { Button } from '@/components/core/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/core/select'
 
 export default function ProductFilters({
+  sortBy,
   categories,
+  searchQuery,
+  onSortChange,
+  onSearchChange,
   selectedCategory,
   onCategoryChange,
-  sortBy,
-  onSortChange,
-  searchQuery,
-  onSearchChange,
 }) {
   return (
     <Card className='p-6'>

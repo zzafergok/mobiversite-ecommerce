@@ -2,9 +2,11 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+
 import { User, Heart, Package, List } from 'lucide-react'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/core/card'
+
 import { Badge } from '@/components/core/badge'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/core/card'
 
 export default function ProfileSidebar() {
   const pathname = usePathname()

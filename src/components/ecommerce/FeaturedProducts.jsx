@@ -1,25 +1,31 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import useApiService from '@/hooks/ecommerce/useApiService'
-import { useCart } from '@/contexts/CartContext'
-import { useWishlist } from '@/contexts/WishlistContext'
-import { useAuth } from '@/contexts/AuthContext'
+
+import { useState, useEffect } from 'react'
+
 import { ShoppingCart, Heart } from 'lucide-react'
-import { Button } from '@/components/core/button'
-import { Card, CardContent } from '@/components/core/card'
+
+import { useCart } from '@/contexts/CartContext'
+import { useAuth } from '@/contexts/AuthContext'
+import { useWishlist } from '@/contexts/WishlistContext'
+
+import useApiService from '@/hooks/useApiService'
+
 import { Badge } from '@/components/core/badge'
+import { Button } from '@/components/core/button'
 import { Skeleton } from '@/components/core/skeleton'
+import { Card, CardContent } from '@/components/core/card'
 
 export default function FeaturedProducts() {
+  const { addToCart } = useCart()
+  const apiService = useApiService()
+  const { isAuthenticated } = useAuth()
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist()
+
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
-  const apiService = useApiService()
-  const { addToCart } = useCart()
-  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist()
-  const { isAuthenticated } = useAuth()
 
   useEffect(() => {
     const fetchFeaturedProducts = async () => {

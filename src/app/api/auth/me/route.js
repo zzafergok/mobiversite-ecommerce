@@ -1,6 +1,7 @@
-import { NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
-import { apiService } from '@/services/ecommerce/apiService'
+import { NextResponse } from 'next/server'
+
+import { apiService } from '@/services/apiService'
 
 export async function GET() {
   try {

@@ -1,32 +1,37 @@
 'use client'
 
-import { useState } from 'react'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+
+import { useState } from 'react'
+
+import { Plus, Edit2, Trash2, FolderOpen } from 'lucide-react'
+
 import { useLists } from '@/contexts/ListsContext'
-import { Button } from '@/components/core/button'
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/core/dialog'
+
 import {
   AlertDialog,
+  AlertDialogTitle,
   AlertDialogAction,
   AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
-  AlertDialogTitle,
+  AlertDialogContent,
+  AlertDialogDescription,
 } from '@/components/core/alert-dialog'
+import { Badge } from '@/components/core/badge'
 import { Input } from '@/components/core/input'
+import { Button } from '@/components/core/button'
 import { Textarea } from '@/components/core/textarea'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/core/card'
-import { Badge } from '@/components/core/badge'
-import { Plus, Edit2, Trash2, FolderOpen } from 'lucide-react'
-import Image from 'next/image'
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/core/dialog'
 
 export default function ListsPage() {
   const router = useRouter()
   const { lists, createList, updateList, deleteList, loading } = useLists()
-  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
+
   const [editingList, setEditingList] = useState(null)
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
   const [formData, setFormData] = useState({ name: '', description: '' })
 
   const handleSubmit = async (e) => {

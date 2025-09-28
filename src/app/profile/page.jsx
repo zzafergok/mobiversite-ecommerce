@@ -1,12 +1,15 @@
 'use client'
 
+import Link from 'next/link'
+
+import { Heart, Package, Settings, User, Calendar, Mail, MapPin, Phone, Edit } from 'lucide-react'
+
 import { useAuth } from '@/contexts/AuthContext'
 import { useWishlist } from '@/contexts/WishlistContext'
-import Link from 'next/link'
-import { Heart, Package, Settings, User, Calendar, Mail, MapPin, Phone, Edit } from 'lucide-react'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/core/card'
+
 import { Badge } from '@/components/core/badge'
 import { Button } from '@/components/core/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/core/card'
 
 export default function ProfilePage() {
   const { user } = useAuth()

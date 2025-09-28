@@ -2,27 +2,33 @@
 
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+
+import { useState, useEffect, useRef, useMemo } from 'react'
+
+import { ShoppingCart, Heart, User, Menu, X, Search, ChevronDown } from 'lucide-react'
+
 import { useAuth } from '@/contexts/AuthContext'
 import { useCart } from '@/contexts/CartContext'
 import { useWishlist } from '@/contexts/WishlistContext'
-import { ShoppingCart, Heart, User, Menu, X, Search, ChevronDown } from 'lucide-react'
-import { useState, useEffect, useRef, useMemo } from 'react'
-import { Button } from '@/components/core/button'
+
 import { Badge } from '@/components/core/badge'
 import { Input } from '@/components/core/input'
+import { Button } from '@/components/core/button'
 import { useResponsiveCategories } from '@/hooks/useResponsiveCategories'
 
 export default function Navbar() {
   const router = useRouter()
-  const { user, logout, loading } = useAuth()
   const { getCartItemsCount } = useCart()
+  const { user, logout, loading } = useAuth()
   const { items: wishlistItems } = useWishlist()
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [searchQuery, setSearchQuery] = useState('')
-  const [userDropdownOpen, setUserDropdownOpen] = useState(false)
-  const [categoriesDropdownOpen, setCategoriesDropdownOpen] = useState(false)
+
   const userDropdownRef = useRef(null)
   const categoriesDropdownRef = useRef(null)
+
+  const [searchQuery, setSearchQuery] = useState('')
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [userDropdownOpen, setUserDropdownOpen] = useState(false)
+  const [categoriesDropdownOpen, setCategoriesDropdownOpen] = useState(false)
 
   const cartItemsCount = getCartItemsCount()
   const wishlistItemsCount = wishlistItems.length

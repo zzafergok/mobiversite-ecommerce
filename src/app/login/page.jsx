@@ -1,30 +1,34 @@
 'use client'
 
-import { useState, useEffect, Suspense } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
-import { useAuth } from '@/contexts/AuthContext'
+import { useRouter, useSearchParams } from 'next/navigation'
+
+import { useState, useEffect, Suspense } from 'react'
+
 import { Eye, EyeOff, User, Lock } from 'lucide-react'
-import { Button } from '@/components/core/button'
+
+import { useAuth } from '@/contexts/AuthContext'
+
 import { Input } from '@/components/core/input'
 import { Label } from '@/components/core/label'
-import { Alert, AlertDescription } from '@/components/core/alert'
-import { Card, CardContent } from '@/components/core/card'
+import { Button } from '@/components/core/button'
 import { Separator } from '@/components/core/separator'
+import { Card, CardContent } from '@/components/core/card'
+import { Alert, AlertDescription } from '@/components/core/alert'
 
 function LoginForm() {
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const { login, isAuthenticated } = useAuth()
+  const redirectTo = searchParams.get('redirect') || '/'
+
+  const [error, setError] = useState('')
   const [formData, setFormData] = useState({
     username: '',
     password: '',
   })
-  const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
-
-  const { login, isAuthenticated } = useAuth()
-  const router = useRouter()
-  const searchParams = useSearchParams()
-  const redirectTo = searchParams.get('redirect') || '/'
+  const [showPassword, setShowPassword] = useState(false)
 
   useEffect(() => {
     if (isAuthenticated) {

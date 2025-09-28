@@ -1,14 +1,17 @@
 'use client'
 
-import { useAuth } from '@/contexts/AuthContext'
 import { useRouter } from 'next/navigation'
+
 import { useEffect } from 'react'
+
+import { useAuth } from '@/contexts/AuthContext'
+
 import ProfileSidebar from '@/components/layout/ProfileSidebar'
 import { PageLoadingSpinner } from '@/components/ui/Spinners'
 
 export default function ProfileLayout({ children }) {
-  const { isAuthenticated, loading } = useAuth()
   const router = useRouter()
+  const { isAuthenticated, loading } = useAuth()
 
   useEffect(() => {
     if (!loading && !isAuthenticated) {

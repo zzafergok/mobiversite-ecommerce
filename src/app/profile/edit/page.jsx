@@ -1,20 +1,25 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+
+import { useState, useEffect } from 'react'
+
+import { ArrowLeft, User, Mail, MapPin, Save } from 'lucide-react'
+
 import { useAuth } from '@/contexts/AuthContext'
 import { useToast } from '@/contexts/ToastContext'
+
 import { useFormChanges } from '@/hooks/useFormChanges'
-import { Button } from '@/components/core/button'
+
 import { Input } from '@/components/core/input'
 import { Label } from '@/components/core/label'
+import { Button } from '@/components/core/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/core/card'
-import { ArrowLeft, User, Mail, MapPin, Save } from 'lucide-react'
 
 export default function ProfileEditPage() {
   const router = useRouter()
-  const { user, updateProfile, isAuthenticated, loading: authLoading } = useAuth()
   const { showSuccess, showError, showInfo } = useToast()
+  const { user, updateProfile, isAuthenticated, loading: authLoading } = useAuth()
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -29,8 +34,8 @@ export default function ProfileEditPage() {
     },
   })
 
-  const [loading, setLoading] = useState(false)
   const [errors, setErrors] = useState({})
+  const [loading, setLoading] = useState(false)
   const [initialFormData, setInitialFormData] = useState(null)
 
   // Form değişikliklerini takip et

@@ -1,6 +1,7 @@
 'use client'
 
 import { Shield, BarChart3, Target, Palette, Clock, FileText } from 'lucide-react'
+
 import { Card } from '@/components/core/card'
 import { Badge } from '@/components/core/badge'
 

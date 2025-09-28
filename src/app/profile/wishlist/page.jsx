@@ -1,22 +1,27 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
-import { useWishlist } from '@/contexts/WishlistContext'
-import ProductCard from '@/components/ecommerce/ProductCard'
-import { ProductLoader } from '@/components/ui/EcommerceLoader'
+
+import { useState, useEffect, useCallback } from 'react'
+
 import { Heart } from 'lucide-react'
+
+import { useWishlist } from '@/contexts/WishlistContext'
+
 import { Button } from '@/components/core/button'
 import { Card, CardContent } from '@/components/core/card'
+import ProductCard from '@/components/ecommerce/ProductCard'
+import { ProductLoader } from '@/components/ui/EcommerceLoader'
 
 export default function WishlistPage() {
   const router = useRouter()
   const { items: wishlistItems } = useWishlist()
-  const [displayedItems, setDisplayedItems] = useState([])
-  const [newlyLoadedItems, setNewlyLoadedItems] = useState([])
-  const [loadingMore, setLoadingMore] = useState(false)
+
   const [page, setPage] = useState(1)
   const [hasMore, setHasMore] = useState(true)
+  const [loadingMore, setLoadingMore] = useState(false)
+  const [displayedItems, setDisplayedItems] = useState([])
+  const [newlyLoadedItems, setNewlyLoadedItems] = useState([])
 
   const INITIAL_LOAD = 8
   const ITEMS_PER_PAGE = 6

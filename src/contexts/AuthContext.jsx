@@ -1,14 +1,16 @@
 'use client'
 
-import { createContext, useContext, useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+
+import { createContext, useContext, useState, useEffect } from 'react'
 
 const AuthContext = createContext()
 
 export function AuthProvider({ children }) {
+  const router = useRouter()
+
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
-  const router = useRouter()
 
   useEffect(() => {
     checkAuth()

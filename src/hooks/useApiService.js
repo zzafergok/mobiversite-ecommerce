@@ -1,4 +1,4 @@
-import { apiService } from '@/services/ecommerce/apiService'
+import { apiService } from '@/services/apiService'
 
 export function useApiService() {
   return apiService

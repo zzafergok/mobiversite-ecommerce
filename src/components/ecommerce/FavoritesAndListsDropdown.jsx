@@ -1,15 +1,19 @@
 'use client'
 
 import { useState } from 'react'
-import { useLists } from '@/contexts/ListsContext'
-import { useWishlist } from '@/contexts/WishlistContext'
-import { Button } from '@/components/core/button'
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/core/popover'
+
 import { Check, Plus, Heart, List as ListIcon } from 'lucide-react'
 
+import { useLists } from '@/contexts/ListsContext'
+import { useWishlist } from '@/contexts/WishlistContext'
+
+import { Button } from '@/components/core/button'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/core/popover'
+
 export default function FavoritesAndListsDropdown({ product, children }) {
-  const { lists, addProductToList, removeProductFromList, isProductInList } = useLists()
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist()
+  const { lists, addProductToList, removeProductFromList, isProductInList } = useLists()
+
   const [isOpen, setIsOpen] = useState(false)
 
   const handleToggleWishlist = async () => {

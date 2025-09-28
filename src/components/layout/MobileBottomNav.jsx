@@ -1,26 +1,31 @@
 'use client'
 
-import { usePathname, useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
+
 import { useState, useMemo } from 'react'
+
+import { Home, Heart, ShoppingCart, User, Grid3X3 } from 'lucide-react'
+
 import { useAuth } from '@/contexts/AuthContext'
 import { useCart } from '@/contexts/CartContext'
 import { useWishlist } from '@/contexts/WishlistContext'
-import { Home, Heart, ShoppingCart, User, Grid3X3 } from 'lucide-react'
+
 import { Badge } from '@/components/core/badge'
 import { Button } from '@/components/core/button'
-import { Card, CardContent } from '@/components/core/card'
 import BottomSheet from '@/components/ui/BottomSheet'
+import { Card, CardContent } from '@/components/core/card'
 
 export default function MobileBottomNav() {
-  const pathname = usePathname()
   const router = useRouter()
   const { user } = useAuth()
+  const pathname = usePathname()
   const { getCartItemsCount } = useCart()
+  const cartItemsCount = getCartItemsCount()
   const { items: wishlistItems } = useWishlist()
+
   const [categoriesModalOpen, setCategoriesModalOpen] = useState(false)
 
-  const cartItemsCount = getCartItemsCount()
   const wishlistItemsCount = wishlistItems.length
 
   const categories = useMemo(

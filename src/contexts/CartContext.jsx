@@ -1,9 +1,11 @@
 'use client'
 
 import { createContext, useContext, useReducer, useEffect } from 'react'
+
 import { useAuth } from './AuthContext'
 import { useToast } from './ToastContext'
-import useApiService from '@/hooks/ecommerce/useApiService'
+
+import useApiService from '@/hooks/useApiService'
 
 const CartContext = createContext()
 

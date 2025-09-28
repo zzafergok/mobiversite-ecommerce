@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import ProductCard from '@/components/ecommerce/ProductCard'
 import ProductFilters from '@/components/ecommerce/ProductFilters'
-import useApiService from '@/hooks/ecommerce/useApiService'
+import useApiService from '@/hooks/useApiService'
 import { ProductLoader } from '@/components/ui/EcommerceLoader'
 import { Card, CardContent } from '@/components/core/card'
 

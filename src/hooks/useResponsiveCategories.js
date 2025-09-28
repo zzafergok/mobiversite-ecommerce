@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 
 export const useResponsiveCategories = (categories) => {
+  const itemsRef = useRef([])
+  const containerRef = useRef(null)
+
+  const [isCalculating, setIsCalculating] = useState(false)
   const [visibleCategories, setVisibleCategories] = useState([])
   const [showAllCategoriesOnly, setShowAllCategoriesOnly] = useState(false)
-  const [isCalculating, setIsCalculating] = useState(false)
-  const containerRef = useRef(null)
-  const itemsRef = useRef([])
 
   const calculateVisibleCategories = useCallback(() => {
     if (!containerRef.current || isCalculating) return

@@ -1,15 +1,19 @@
 'use client'
 
-import { useState, useRef, useCallback } from 'react'
-import { useToast } from '@/contexts/ToastContext'
-import { X, CheckCircle, AlertCircle, Info, ShoppingCart, Heart, Trash2, Pause } from 'lucide-react'
-import { Button } from '@/components/core/button'
-import { Card } from '@/components/core/card'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import { useCart } from '@/contexts/CartContext'
-import { useWishlist } from '@/contexts/WishlistContext'
+
+import { useState, useRef, useCallback } from 'react'
+
+import { X, CheckCircle, AlertCircle, Info, ShoppingCart, Heart, Trash2, Pause } from 'lucide-react'
+
 import { useAuth } from '@/contexts/AuthContext'
+import { useToast } from '@/contexts/ToastContext'
+import { useWishlist } from '@/contexts/WishlistContext'
+
+import { Card } from '@/components/core/card'
+import { useCart } from '@/contexts/CartContext'
+import { Button } from '@/components/core/button'
 
 const toastIcons = {
   success: CheckCircle,
@@ -29,15 +33,16 @@ const toastStyles = {
 
 function Toast({ toast, onRemove }) {
   const router = useRouter()
-  const { getCartItemsCount } = useCart()
-  const { addToWishlist, isInWishlist } = useWishlist()
   const { isAuthenticated } = useAuth()
+  const { getCartItemsCount } = useCart()
   const { pauseToast, resumeToast } = useToast()
+  const { addToWishlist, isInWishlist } = useWishlist()
+
   const Icon = toastIcons[toast.type]
+  const remainingTimeRef = useRef(toast.duration)
 
   const [startTime] = useState(Date.now())
   const [isHovered, setIsHovered] = useState(false)
-  const remainingTimeRef = useRef(toast.duration)
 
   const handleMouseEnter = useCallback(() => {
     setIsHovered(true)

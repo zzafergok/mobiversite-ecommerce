@@ -1,27 +1,33 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
-import { useAuth } from '@/contexts/AuthContext'
-import useApiService from '@/hooks/ecommerce/useApiService'
-import { OrderLoader } from '@/components/ui/EcommerceLoader'
+
+import { useState, useEffect, useCallback } from 'react'
+
 import { Package, Calendar, CreditCard } from 'lucide-react'
-import { Button } from '@/components/core/button'
-import { Card, CardContent } from '@/components/core/card'
+
+import { useAuth } from '@/contexts/AuthContext'
+
+import useApiService from '@/hooks/useApiService'
+
 import { Badge } from '@/components/core/badge'
+import { Button } from '@/components/core/button'
 import { Separator } from '@/components/core/separator'
+import { Card, CardContent } from '@/components/core/card'
+import { OrderLoader } from '@/components/ui/EcommerceLoader'
 
 export default function OrdersPage() {
   const router = useRouter()
   const { user } = useAuth()
+  const apiService = useApiService()
+
+  const [page, setPage] = useState(1)
   const [orders, setOrders] = useState([])
-  const [displayedOrders, setDisplayedOrders] = useState([])
-  const [newlyLoadedOrders, setNewlyLoadedOrders] = useState([])
+  const [hasMore, setHasMore] = useState(true)
   const [loading, setLoading] = useState(true)
   const [loadingMore, setLoadingMore] = useState(false)
-  const [page, setPage] = useState(1)
-  const [hasMore, setHasMore] = useState(true)
-  const apiService = useApiService()
+  const [displayedOrders, setDisplayedOrders] = useState([])
+  const [newlyLoadedOrders, setNewlyLoadedOrders] = useState([])
 
   const INITIAL_LOAD = 5
   const ITEMS_PER_PAGE = 3

@@ -1,13 +1,17 @@
 'use client'
 
 import { useState } from 'react'
+
+import { Check, Plus, List as ListIcon } from 'lucide-react'
+
 import { useLists } from '@/contexts/ListsContext'
+
 import { Button } from '@/components/core/button'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/core/popover'
-import { Check, Plus, List as ListIcon } from 'lucide-react'
 
 export default function AddToListDropdown({ product, children }) {
   const { lists, addProductToList, removeProductFromList, isProductInList } = useLists()
+
   const [isOpen, setIsOpen] = useState(false)
 
   const handleToggleProductInList = async (listId) => {

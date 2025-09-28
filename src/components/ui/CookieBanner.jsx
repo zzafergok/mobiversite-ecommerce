@@ -1,12 +1,15 @@
 'use client'
 
 import { useState } from 'react'
+
 import { X, Settings, Info, Shield, BarChart3, Target, Palette } from 'lucide-react'
-import { Button } from '@/components/core/button'
-import { Switch } from '@/components/core/switch'
+
+import { useCookieConsent } from '@/contexts/CookieConsentContext'
+
 import { Card } from '@/components/core/card'
 import { Badge } from '@/components/core/badge'
-import { useCookieConsent } from '@/contexts/CookieConsentContext'
+import { Button } from '@/components/core/button'
+import { Switch } from '@/components/core/switch'
 
 const cookieCategories = {
   essential: {

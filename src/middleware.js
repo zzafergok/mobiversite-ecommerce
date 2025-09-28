@@ -1,8 +1,5 @@
 import { NextResponse } from 'next/server'
 
-// Public routes that don't require authentication (currently handled by specific matcher)
-// const publicRoutes = ['/', '/products', '/cart', '/login', '/register', '/cookie-policy']
-
 // Protected routes that require authentication
 const protectedRoutes = [
   '/profile',
