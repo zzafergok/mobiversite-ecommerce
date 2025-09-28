@@ -1,13 +1,20 @@
 import { NextResponse } from 'next/server'
 
 // Public routes that don't require authentication
-const publicRoutes = ['/', '/products', '/cart', '/login']
+const publicRoutes = ['/', '/products', '/cart', '/login', '/register', '/cookie-policy']
 
 // Protected routes that require authentication
-const protectedRoutes = ['/profile', '/profile/which-env']
+const protectedRoutes = [
+  '/profile',
+  '/profile/which-env',
+  '/profile/edit',
+  '/profile/orders',
+  '/profile/wishlist',
+  '/profile/lists',
+]
 
 // Routes that should redirect to home if user is already authenticated
-const authRoutes = ['/login']
+const authRoutes = ['/login', '/register']
 
 // Helper function to verify auth token
 function verifyAuthToken(request) {
@@ -79,11 +86,11 @@ export const config = {
   matcher: [
     /*
      * Match all request paths except for the ones starting with:
+     * - api (API routes)
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
-     * - public files (public folder)
      */
-    '/((?!_next/static|_next/image|favicon.ico|public).*)',
+    '/((?!api|_next/static|_next/image|favicon.ico).*)',
   ],
 }

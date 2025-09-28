@@ -1,7 +1,6 @@
 {
   "name": "mobiversite-ecommerce",
   "version": "0.1.0",
-  "type": "module",
   "description": "mobiversite-ecommerce",
   "license": "MIT",
   "engines": {
