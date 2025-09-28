@@ -67,8 +67,8 @@ function LoginForm() {
 
   const fillDemoCredentials = () => {
     setFormData({
-      username: 'demo',
-      password: 'password123',
+      username: 'zafergok',
+      password: '123123',
     })
   }
 
@@ -170,7 +170,7 @@ function LoginForm() {
                 Demo hesap bilgilerini kullan
               </Button>
               <p className='mt-2 text-xs text-gray-500 dark:text-gray-400 text-center'>
-                Demo: Kullanıcı adı: demo, Şifre: password123
+                Demo: Kullanıcı adı: zafergok, Şifre: 123123
               </p>
             </div>
 
