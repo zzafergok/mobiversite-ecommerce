@@ -211,7 +211,6 @@ server.use(middlewares)
 server.use(
   jsonServer.rewriter({
     '/api/*': '/$1',
-    '/blog/:resource/:id/show': '/:resource/:id',
   }),
 )
 
