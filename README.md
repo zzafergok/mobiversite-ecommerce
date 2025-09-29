@@ -140,29 +140,6 @@ Uygulama iki farklı backend ile çalışabilir:
 - Arktos backend gerektirir
 - Gizli admin sayfasından seçilebilir
 
-## 🔐 Gizli Admin Sayfası
-
-### Backend Ortamı Seçici
-
-**URL**: `/profile/which-env`
-
-Bu sayfa kasıtlı olarak UI'da gösterilmez. Sadece URL'yi bilenler erişebilir.
-
-**Amaç**:
-
-- Development sırasında backend ortamları arasında hızlı geçiş
-- Demo amaçlı JSON Server ve gerçek backend karşılaştırması
-- Production'da aktif edilmemelidir
-
-**Kullanım**:
-
-1. Giriş yapın
-2. Doğrudan `/profile/which-env` adresine gidin
-3. JSON Server veya Neon DB seçin
-4. Tüm API çağrıları otomatik olarak yeni backend'e yönlenir
-
-**Güvenlik Notu**: Production ortamında bu sayfaya sadece admin kullanıcıları erişebilmelidir.
-
 ## 🎨 Tasarım Kararları
 
 ### State Management

@@ -11,16 +11,13 @@ import { useCart } from '@/contexts/CartContext'
 import { useAuth } from '@/contexts/AuthContext'
 import { useWishlist } from '@/contexts/WishlistContext'
 
-import useApiService from '@/hooks/useApiService'
-
 import { Badge } from '@/components/core/badge'
 import { Button } from '@/components/core/button'
 import { Skeleton } from '@/components/core/skeleton'
 import { Card, CardContent } from '@/components/core/card'
 
-export default function FeaturedProducts() {
+export default function BestSellers() {
   const { addToCart } = useCart()
-  const apiService = useApiService()
   const { isAuthenticated } = useAuth()
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist()
 
@@ -28,23 +25,23 @@ export default function FeaturedProducts() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const fetchFeaturedProducts = async () => {
+    const fetchBestSellers = async () => {
       try {
-        // Simulated loading time
         await new Promise((resolve) => setTimeout(resolve, 1000))
 
-        const allProducts = await apiService.getAllProducts()
-        // İlk 6 ürünü featured olarak göster
-        setProducts(allProducts.slice(0, 6))
+        const allProducts = await fetch('http://localhost:3001/products').then((res) => res.json())
+        // En pahalı 6 ürünü best sellers olarak göster
+        const bestSellers = allProducts.sort((a, b) => b.price - a.price).slice(0, 6)
+        setProducts(bestSellers)
       } catch (error) {
-        console.error('Error fetching featured products:', error)
+        console.error('Error fetching best sellers:', error)
       } finally {
         setLoading(false)
       }
     }
 
-    fetchFeaturedProducts()
-  }, [apiService])
+    fetchBestSellers()
+  }, [])
 
   const handleAddToCart = (product) => {
     addToCart(product)
@@ -52,7 +49,6 @@ export default function FeaturedProducts() {
 
   const handleWishlistToggle = (product) => {
     if (!isAuthenticated) {
-      // Redirect to login or show message
       return
     }
 

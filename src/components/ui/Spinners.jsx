@@ -10,7 +10,7 @@ export const PageLoadingSpinner = ({ size = 'large', className = '' }) => {
     <div className={`flex justify-center items-center ${className}`}>
       <div className='relative'>
         <div
-          className={`${sizeClasses[size]} rounded-full border-4 border-gray-200 border-t-blue-500 animate-spin`}
+          className={`${sizeClasses[size]} rounded-full border-4 border-gray-200 border-t-gray-500 animate-spin`}
         ></div>
       </div>
     </div>
@@ -77,7 +77,7 @@ export const SimpleSpinner = ({ size = 'medium', color = 'blue', className = '' 
   }
 
   const colorClasses = {
-    blue: 'border-blue-200 border-t-blue-500',
+    blue: 'border-gray-200 border-t-gray-500',
     green: 'border-green-200 border-t-green-500',
     orange: 'border-orange-200 border-t-orange-500',
     gray: 'border-gray-200 border-t-gray-500',

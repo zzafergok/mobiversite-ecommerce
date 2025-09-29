@@ -51,7 +51,7 @@ export default function ProductCard({ product }) {
 
       <CardContent className='p-4 flex-1 flex flex-col justify-between'>
         <h3
-          className='text-sm font-medium text-gray-900 dark:text-white mb-2 line-clamp-2 hover:text-blue-600 transition-colors min-h-[2.5rem] cursor-pointer'
+          className='text-sm font-medium text-gray-900 dark:text-white mb-2 line-clamp-2 hover:text-gray-600 transition-colors min-h-[2.5rem] cursor-pointer'
           onClick={() => router.push(`/products/${product.id}`)}
         >
           {product.title}

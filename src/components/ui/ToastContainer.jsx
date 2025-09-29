@@ -26,7 +26,7 @@ const toastIcons = {
 const toastStyles = {
   success: 'bg-green-50 border-green-200 text-green-800',
   error: 'bg-red-50 border-red-200 text-red-800',
-  info: 'bg-blue-50 border-blue-200 text-blue-800',
+  info: 'bg-gray-50 border-gray-200 text-gray-800',
   cart: 'bg-orange-50 border-orange-200 text-orange-800',
   'remove-cart': 'bg-red-50 border-red-200 text-red-800',
 }
@@ -252,7 +252,7 @@ function Toast({ toast, onRemove }) {
           <Icon
             size={20}
             className={
-              toast.type === 'success' ? 'text-green-600' : toast.type === 'error' ? 'text-red-600' : 'text-blue-600'
+              toast.type === 'success' ? 'text-green-600' : toast.type === 'error' ? 'text-red-600' : 'text-gray-600'
             }
           />
         </div>

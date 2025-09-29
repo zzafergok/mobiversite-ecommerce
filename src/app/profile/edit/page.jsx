@@ -163,7 +163,7 @@ export default function ProfileEditPage() {
     return (
       <div className='min-h-screen flex items-center justify-center'>
         <div className='text-center'>
-          <div className='animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4'></div>
+          <div className='animate-spin rounded-full h-8 w-8 border-b-2 border-gray-600 mx-auto mb-4'></div>
           <p>Yükleniyor...</p>
         </div>
       </div>
@@ -181,7 +181,7 @@ export default function ProfileEditPage() {
       <div className='mb-6'>
         <Button
           variant='ghost'
-          className='mb-4 p-0 h-auto text-blue-600 hover:text-blue-700'
+          className='mb-4 p-0 h-auto text-gray-600 hover:text-gray-700'
           onClick={() => router.push('/profile')}
         >
           <div className='inline-flex items-center gap-2'>

@@ -1,14 +1,7 @@
 import { NextResponse } from 'next/server'
 
 // Protected routes that require authentication
-const protectedRoutes = [
-  '/profile',
-  '/profile/which-env',
-  '/profile/edit',
-  '/profile/orders',
-  '/profile/wishlist',
-  '/profile/lists',
-]
+const protectedRoutes = ['/profile', '/profile/edit', '/profile/orders', '/profile/wishlist', '/profile/lists']
 
 // Routes that should redirect to home if user is already authenticated
 const authRoutes = ['/login', '/register']
@@ -26,7 +19,7 @@ function verifyAuthToken(request) {
     const decodedToken = JSON.parse(Buffer.from(token, 'base64').toString())
 
     // Additional validation - check if token has required fields and is not expired
-    if (!decodedToken || !decodedToken.id || !decodedToken.username) {
+    if (!decodedToken || !decodedToken.userId || !decodedToken.username) {
       return null
     }
 

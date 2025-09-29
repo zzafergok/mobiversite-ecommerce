@@ -104,7 +104,7 @@ export default function ProductDetailPage({ params }) {
       {/* Back Button */}
       <Button
         variant='ghost'
-        className='mb-4 sm:mb-6 p-0 h-auto text-blue-600 hover:text-blue-700'
+        className='mb-4 sm:mb-6 p-0 h-auto text-gray-600 hover:text-gray-700'
         onClick={() => router.push('/products')}
       >
         <div className='inline-flex items-center gap-2'>
@@ -163,7 +163,7 @@ export default function ProductDetailPage({ params }) {
           <div className='flex flex-col gap-3 sm:gap-4'>
             <Button
               onClick={handleAddToCart}
-              className='w-full gap-2 bg-blue-600 hover:bg-blue-700 h-12 text-base font-medium'
+              className='w-full gap-2 bg-gray-600 hover:bg-gray-700 h-12 text-base font-medium'
             >
               <ShoppingCart size={20} />
               Sepete Ekle
@@ -185,7 +185,7 @@ export default function ProductDetailPage({ params }) {
           {!isAuthenticated && (
             <p className='text-sm text-gray-500 dark:text-gray-400'>
               Favorilere ve listelere eklemek için{' '}
-              <span className='text-blue-600 hover:text-blue-700 cursor-pointer' onClick={() => router.push('/login')}>
+              <span className='text-gray-600 hover:text-gray-700 cursor-pointer' onClick={() => router.push('/login')}>
                 giriş yapın
               </span>
             </p>

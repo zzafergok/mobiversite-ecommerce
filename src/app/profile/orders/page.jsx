@@ -122,7 +122,7 @@ export default function OrdersPage() {
           <Package className='mx-auto h-16 w-16 text-gray-300 mb-4' />
           <h3 className='text-lg font-medium text-gray-900 mb-2'>Henüz siparişiniz yok</h3>
           <p className='text-gray-500 mb-6'>İlk siparişinizi vererek alışverişe başlayın.</p>
-          <Button onClick={() => router.push('/products')} className='bg-blue-600 hover:bg-blue-700'>
+          <Button onClick={() => router.push('/products')} className='bg-gray-600 hover:bg-gray-700'>
             Alışverişe Başla
           </Button>
         </CardContent>
@@ -215,7 +215,7 @@ export default function OrdersPage() {
                         <div className='flex-1 min-w-0'>
                           <div className='flex justify-between items-start'>
                             <div className='flex-1 pr-4'>
-                              <h5 className='text-sm font-medium text-gray-900 group-hover:text-blue-600 line-clamp-2 leading-5 mb-2 transition-colors'>
+                              <h5 className='text-sm font-medium text-gray-900 group-hover:text-gray-600 line-clamp-2 leading-5 mb-2 transition-colors'>
                                 {item.title}
                               </h5>
                               <div className='flex items-center space-x-4 text-xs text-gray-600'>
@@ -262,7 +262,7 @@ export default function OrdersPage() {
                           : order.status === 'processing'
                             ? 'bg-yellow-100 text-yellow-800'
                             : order.status === 'shipped'
-                              ? 'bg-blue-100 text-blue-800'
+                              ? 'bg-gray-100 text-gray-800'
                               : 'bg-gray-100 text-gray-800'
                       }
                     >

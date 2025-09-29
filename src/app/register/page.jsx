@@ -259,7 +259,7 @@ export default function RegisterPage() {
     <div className='min-h-auto flex items-center justify-center xs:pt-12 md:pt-28 px-4 sm:px-6 lg:px-8'>
       <Card className='w-full max-w-md shadow-2xl border-0 bg-white/80 backdrop-blur-sm dark:bg-gray-900/80'>
         <CardHeader className='text-center pb-6'>
-          <CardTitle className='text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'>
+          <CardTitle className='text-2xl font-bold bg-gradient-to-r from-gray-600 to-purple-600 bg-clip-text text-transparent'>
             Hesap Oluştur
           </CardTitle>
           <p className='text-gray-600 dark:text-gray-400 text-sm'>Mobiversite E-Commerce'e katılın</p>
@@ -277,7 +277,7 @@ export default function RegisterPage() {
         <CardContent className='space-y-6'>
           {/* Current Step */}
           <div className='text-center space-y-4'>
-            <div className='mx-auto w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mb-4 shadow-lg'>
+            <div className='mx-auto w-16 h-16 bg-gradient-to-br from-gray-500 to-purple-600 rounded-full flex items-center justify-center mb-4 shadow-lg'>
               <Icon className='w-8 h-8 text-white' />
             </div>
 
@@ -301,7 +301,7 @@ export default function RegisterPage() {
                 onChange={(e) => handleInputChange(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder={currentStepData.placeholder}
-                className={`text-lg h-14 text-center ${currentError ? 'border-red-500 bg-red-50' : 'border-gray-200 focus:border-blue-500'} transition-all duration-200`}
+                className={`text-lg h-14 text-center ${currentError ? 'border-red-500 bg-red-50' : 'border-gray-200 focus:border-gray-500'} transition-all duration-200`}
                 autoComplete='off'
                 autoFocus
               />
@@ -342,7 +342,7 @@ export default function RegisterPage() {
               type='button'
               onClick={handleNext}
               disabled={loading}
-              className='flex-1 h-12 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 transition-all duration-200'
+              className='flex-1 h-12 bg-gradient-to-r from-gray-600 to-purple-600 hover:from-gray-700 hover:to-purple-700 transition-all duration-200'
             >
               {loading ? (
                 'Kayıt Yapılıyor...'
@@ -366,7 +366,7 @@ export default function RegisterPage() {
               <div
                 key={index}
                 className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index <= currentStep ? 'bg-gradient-to-r from-blue-500 to-purple-600' : 'bg-gray-200 dark:bg-gray-600'
+                  index <= currentStep ? 'bg-gradient-to-r from-gray-500 to-purple-600' : 'bg-gray-200 dark:bg-gray-600'
                 }`}
               />
             ))}
@@ -375,7 +375,7 @@ export default function RegisterPage() {
           {/* Login Link */}
           <div className='text-center text-sm text-gray-600 dark:text-gray-400 pt-4 border-t border-gray-100 dark:border-gray-700'>
             Zaten hesabınız var mı?{' '}
-            <Link href='/login' className='text-blue-600 hover:text-blue-700 font-medium transition-colors'>
+            <Link href='/login' className='text-gray-600 hover:text-gray-700 font-medium transition-colors'>
               Giriş Yapın
             </Link>
           </div>

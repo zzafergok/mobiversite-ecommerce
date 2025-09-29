@@ -109,7 +109,7 @@ export default function ListDetailPage({ params }) {
         <div className='text-center'>
           <h2 className='text-xl font-semibold mb-2'>Liste bulunamadı</h2>
           <p className='text-gray-600 mb-4'>Bu liste artık mevcut değil veya silinmiş olabilir.</p>
-          <button onClick={() => router.push('/profile/lists')} className='text-blue-600 hover:text-blue-700'>
+          <button onClick={() => router.push('/profile/lists')} className='text-gray-600 hover:text-gray-700'>
             Listelerime Dön
           </button>
         </div>
@@ -124,7 +124,7 @@ export default function ListDetailPage({ params }) {
         <div className='flex items-center gap-4'>
           <button
             onClick={() => router.push('/profile/lists')}
-            className='inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors'
+            className='inline-flex items-center gap-2 text-gray-600 hover:text-gray-700 transition-colors'
           >
             <ArrowLeft className='w-4 h-4' />
             Listelerime Dön

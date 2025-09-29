@@ -216,7 +216,7 @@ export default function ListsPage() {
               <CardHeader className='pb-3 pr-16'>
                 <div className='flex items-start justify-between'>
                   <div className='flex-1 min-w-0'>
-                    <CardTitle className='text-lg sm:text-xl font-semibold truncate group-hover:text-blue-600 transition-colors'>
+                    <CardTitle className='text-lg sm:text-xl font-semibold truncate group-hover:text-gray-600 transition-colors'>
                       {list.name}
                     </CardTitle>
                     {list.description && (

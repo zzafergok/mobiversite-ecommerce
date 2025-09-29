@@ -50,8 +50,8 @@ export default function ProfilePage() {
       <Card className='overflow-hidden'>
         <CardContent className='p-5 lg:p-6'>
           <div className='flex flex-col sm:flex-row items-start space-y-5 sm:space-y-0 sm:space-x-6'>
-            <div className='w-16 h-16 lg:w-20 lg:h-20 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mx-auto sm:mx-0'>
-              <span className='text-lg lg:text-2xl font-bold text-blue-600'>
+            <div className='w-16 h-16 lg:w-20 lg:h-20 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 mx-auto sm:mx-0'>
+              <span className='text-lg lg:text-2xl font-bold text-gray-600'>
                 {user?.firstName?.[0]}
                 {user?.lastName?.[0]}
               </span>
@@ -147,8 +147,8 @@ export default function ProfilePage() {
           <Card className='hover:shadow-md transition-shadow'>
             <CardContent className='p-5 lg:p-6'>
               <div className='flex items-center space-x-3 lg:space-x-4'>
-                <div className='w-10 h-10 lg:w-12 lg:h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0'>
-                  <Package className='h-5 w-5 lg:h-6 lg:w-6 text-blue-600' />
+                <div className='w-10 h-10 lg:w-12 lg:h-12 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0'>
+                  <Package className='h-5 w-5 lg:h-6 lg:w-6 text-gray-600' />
                 </div>
                 <div>
                   <p className='text-xl lg:text-2xl font-bold text-gray-900'>{totalOrders}</p>

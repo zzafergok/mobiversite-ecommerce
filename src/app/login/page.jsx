@@ -83,7 +83,7 @@ function LoginForm() {
             <p className='mt-2 text-center text-sm text-gray-600 dark:text-gray-400'>
               Veya{' '}
               <span
-                className='font-medium text-blue-600 hover:text-blue-500 cursor-pointer'
+                className='font-medium text-gray-600 hover:text-gray-500 cursor-pointer'
                 onClick={() => router.push('/')}
               >
                 misafir olarak devam edin
@@ -153,7 +153,7 @@ function LoginForm() {
               <Button
                 type='submit'
                 disabled={loading}
-                className='w-full bg-blue-600 hover:bg-blue-700 focus:ring-blue-500'
+                className='w-full bg-gray-600 hover:bg-gray-700 focus:ring-gray-500'
               >
                 {loading ? 'Giriş yapılıyor...' : 'Giriş Yap'}
               </Button>
@@ -166,7 +166,7 @@ function LoginForm() {
                   type='button'
                   variant='ghost'
                   onClick={fillDemoCredentials}
-                  className='w-full text-blue-600 hover:text-blue-500'
+                  className='w-full text-gray-600 hover:text-gray-500'
                 >
                   Demo hesap bilgilerini kullan
                 </Button>
@@ -178,7 +178,7 @@ function LoginForm() {
 
             <div className='text-center text-sm text-gray-600 dark:text-gray-400 pt-4 border-t'>
               Hesabınız yok mu?{' '}
-              <Link href='/register' className='text-blue-600 hover:text-blue-700 font-medium'>
+              <Link href='/register' className='text-gray-600 hover:text-gray-700 font-medium'>
                 Hesap Oluşturun
               </Link>
             </div>

@@ -10,7 +10,7 @@ export default function CookiePolicyPage() {
     {
       title: 'Zorunlu Çerezler',
       icon: Shield,
-      color: 'bg-blue-100 text-blue-600',
+      color: 'bg-gray-100 text-gray-600',
       description: 'Web sitesinin temel işlevlerini yerine getirmesi için gerekli çerezler.',
       duration: 'Oturum süresi',
       examples: ['Kullanıcı oturum bilgileri (auth-token)', 'Sepet içeriği', 'Güvenlik çerezleri', 'Dil tercihleri'],

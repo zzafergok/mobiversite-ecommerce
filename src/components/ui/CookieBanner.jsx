@@ -98,7 +98,7 @@ export default function CookieBanner() {
                           <div
                             className={`p-2 rounded-full ${
                               isRequired
-                                ? 'bg-blue-100 text-blue-600'
+                                ? 'bg-gray-100 text-gray-600'
                                 : isEnabled
                                   ? 'bg-green-100 text-green-600'
                                   : 'bg-gray-100 text-gray-500'
