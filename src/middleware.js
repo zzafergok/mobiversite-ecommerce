@@ -24,6 +24,17 @@ function verifyAuthToken(request) {
   try {
     // Simple token verification (decode base64)
     const decodedToken = JSON.parse(Buffer.from(token, 'base64').toString())
+
+    // Additional validation - check if token has required fields and is not expired
+    if (!decodedToken || !decodedToken.id || !decodedToken.username) {
+      return null
+    }
+
+    // Check if token has expiry and is expired (if expiry exists)
+    if (decodedToken.exp && Date.now() >= decodedToken.exp * 1000) {
+      return null
+    }
+
     return decodedToken
   } catch (error) {
     console.error('Token verification error:', error)
@@ -48,6 +59,14 @@ export function middleware(request) {
 
   // Verify auth token
   const user = verifyAuthToken(request)
+
+  // If token exists but is invalid, clear it
+  const hasToken = request.cookies.get('auth-token')?.value
+  if (hasToken && !user) {
+    const response = NextResponse.next()
+    response.cookies.delete('auth-token')
+    return response
+  }
 
   // Check if route is protected
   const isProtectedRoute = protectedRoutes.some((route) => pathname === route || pathname.startsWith(route + '/'))
