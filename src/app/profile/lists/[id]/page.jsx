@@ -1,6 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import { notFound } from 'next/navigation'
 
 import { useState, useEffect, use } from 'react'
 
@@ -48,8 +49,8 @@ export default function ListDetailPage({ params }) {
       if (foundList) {
         setList(foundList)
       } else {
-        // Liste bulunamazsa ana sayfaya yönlendir
-        router.push('/profile/lists')
+        // Liste bulunamazsa not-found sayfasını göster
+        notFound()
       }
     }
   }, [lists, loading, resolvedParams.id, router])

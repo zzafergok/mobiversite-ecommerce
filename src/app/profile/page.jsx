@@ -1,11 +1,13 @@
 'use client'
 
 import Link from 'next/link'
+import { useState, useEffect } from 'react'
 
 import { Heart, Package, Settings, User, Calendar, Mail, MapPin, Phone, Edit } from 'lucide-react'
 
 import { useAuth } from '@/contexts/AuthContext'
 import { useWishlist } from '@/contexts/WishlistContext'
+import useApiService from '@/hooks/useApiService'
 
 import { Badge } from '@/components/core/badge'
 import { Button } from '@/components/core/button'
@@ -14,6 +16,25 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/core/card
 export default function ProfilePage() {
   const { user } = useAuth()
   const { items: wishlistItems } = useWishlist()
+  const apiService = useApiService()
+
+  const [totalOrders, setTotalOrders] = useState(0)
+
+  useEffect(() => {
+    const fetchOrderCount = async () => {
+      if (!user?.id) return
+
+      try {
+        const userOrders = await apiService.getOrdersByUserId(user.id)
+        setTotalOrders(userOrders ? userOrders.length : 0)
+      } catch (error) {
+        console.error('Error fetching user orders:', error)
+        setTotalOrders(0)
+      }
+    }
+
+    fetchOrderCount()
+  }, [user?.id, apiService])
 
   return (
     <div className='space-y-6 md:space-y-8'>
@@ -130,7 +151,7 @@ export default function ProfilePage() {
                   <Package className='h-5 w-5 lg:h-6 lg:w-6 text-blue-600' />
                 </div>
                 <div>
-                  <p className='text-xl lg:text-2xl font-bold text-gray-900'>0</p>
+                  <p className='text-xl lg:text-2xl font-bold text-gray-900'>{totalOrders}</p>
                   <p className='text-xs lg:text-sm text-gray-500'>Toplam Sipariş</p>
                 </div>
               </div>

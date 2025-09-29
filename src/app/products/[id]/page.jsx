@@ -1,33 +1,38 @@
 'use client'
 
-import { useState, useEffect, use } from 'react'
-import { notFound, useRouter } from 'next/navigation'
 import Image from 'next/image'
+import { notFound, useRouter } from 'next/navigation'
+
+import { useState, useEffect, use } from 'react'
+
 import { ArrowLeft, ShoppingCart, Heart, Minus, Plus } from 'lucide-react'
+
 import useApiService from '@/hooks/useApiService'
+
 import { useCart } from '@/contexts/CartContext'
-import { useWishlist } from '@/contexts/WishlistContext'
-import { useLists } from '@/contexts/ListsContext'
 import { useAuth } from '@/contexts/AuthContext'
-import FavoritesAndListsDropdown from '@/components/ecommerce/FavoritesAndListsDropdown'
-import { ProductLoader } from '@/components/ui/EcommerceLoader'
-import { Button } from '@/components/core/button'
+import { useLists } from '@/contexts/ListsContext'
+import { useWishlist } from '@/contexts/WishlistContext'
+
 import { Badge } from '@/components/core/badge'
+import { Button } from '@/components/core/button'
 import { Card, CardContent } from '@/components/core/card'
+import { ProductLoader } from '@/components/ui/EcommerceLoader'
+import FavoritesAndListsDropdown from '@/components/ecommerce/FavoritesAndListsDropdown'
 
 export default function ProductDetailPage({ params }) {
-  const resolvedParams = use(params)
   const router = useRouter()
-  const [product, setProduct] = useState(null)
-  const [quantity, setQuantity] = useState(1)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-
-  const apiService = useApiService()
   const { addToCart } = useCart()
+  const resolvedParams = use(params)
+  const apiService = useApiService()
+  const { isAuthenticated } = useAuth()
   const { isInWishlist } = useWishlist()
   const { lists, isProductInList } = useLists()
-  const { isAuthenticated } = useAuth()
+
+  const [error, setError] = useState(null)
+  const [quantity, setQuantity] = useState(1)
+  const [product, setProduct] = useState(null)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -35,14 +40,27 @@ export default function ProductDetailPage({ params }) {
         // Simulated loading time
         await new Promise((resolve) => setTimeout(resolve, 800))
 
-        const productData = await apiService.getProduct(resolvedParams.id)
-        if (!productData) {
-          setError('Product not found')
+        const productId = String(resolvedParams.id)
+
+        // Validate ID format (should be numeric or valid product ID)
+        const isValidId = /^[0-9]+$/.test(productId)
+        if (!isValidId) {
+          notFound()
           return
         }
-        setProduct(productData)
+
+        const productData = await apiService.getProduct(productId)
+        if (!productData) {
+          notFound()
+        } else {
+          setProduct(productData)
+        }
       } catch (error) {
         console.error('Error fetching product:', error)
+        if (error.response && error.response.status === 404) {
+          notFound()
+          return
+        }
         setError('Error loading product')
       } finally {
         setLoading(false)

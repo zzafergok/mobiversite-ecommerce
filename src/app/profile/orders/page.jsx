@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
 import { useState, useEffect, useCallback } from 'react'
@@ -180,16 +181,63 @@ export default function OrdersPage() {
 
               <Separator className='my-4' />
               <div>
-                <h4 className='text-sm font-medium text-gray-900 mb-3'>Sipariş Detayları</h4>
-                <div className='space-y-2'>
+                <h4 className='text-sm font-medium text-gray-900 mb-4'>Sipariş Detayları</h4>
+                <div className='space-y-3'>
                   {order.items?.map((item, index) => (
-                    <div key={index} className='flex justify-between items-center text-sm'>
-                      <span className='text-gray-600'>
-                        {item.title} x {item.quantity}
-                      </span>
-                      <span className='text-gray-900 font-medium'>${(item.price * item.quantity).toFixed(2)}</span>
+                    <div
+                      key={index}
+                      className='bg-white rounded-lg p-4 border border-gray-200 shadow-sm hover:shadow-md hover:border-gray-300 transition-all duration-200 cursor-pointer group'
+                      onClick={() => router.push(`/products/${String(item.id)}`)}
+                    >
+                      <div className='flex items-center space-x-4'>
+                        <div className='flex-shrink-0'>
+                          <div className='w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden border border-gray-200 group-hover:border-gray-300 transition-colors'>
+                            {item.image ? (
+                              <Image
+                                src={item.image}
+                                alt={item.title}
+                                width={64}
+                                height={64}
+                                className='w-full h-full object-cover rounded-lg'
+                                onError={(e) => {
+                                  e.target.style.display = 'none'
+                                  e.target.nextSibling.style.display = 'flex'
+                                }}
+                              />
+                            ) : null}
+                            <Package
+                              className='h-8 w-8 text-gray-400'
+                              style={{ display: item.image ? 'none' : 'block' }}
+                            />
+                          </div>
+                        </div>
+
+                        <div className='flex-1 min-w-0'>
+                          <div className='flex justify-between items-start'>
+                            <div className='flex-1 pr-4'>
+                              <h5 className='text-sm font-medium text-gray-900 group-hover:text-blue-600 line-clamp-2 leading-5 mb-2 transition-colors'>
+                                {item.title}
+                              </h5>
+                              <div className='flex items-center space-x-4 text-xs text-gray-600'>
+                                <span>
+                                  Adet: <span className='font-medium text-gray-900'>{item.quantity}</span>
+                                </span>
+                                <span>
+                                  Birim: <span className='font-medium text-gray-900'>${item.price.toFixed(2)}</span>
+                                </span>
+                              </div>
+                            </div>
+
+                            <div className='text-right'>
+                              <div className='text-sm font-semibold text-gray-900'>
+                                ${(item.price * item.quantity).toFixed(2)}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  )) || <div className='text-sm text-gray-500'>Sipariş detayları bulunamadı</div>}
+                  )) || <div className='text-sm text-gray-500 text-center py-4'>Sipariş detayları bulunamadı</div>}
                 </div>
               </div>
 
