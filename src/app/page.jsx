@@ -56,7 +56,7 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className='grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 xs:py-4 lg:py-0 md:p-4'>
+        <div className='grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 py-4 md:p-4'>
           {categories.map((category, index) => (
             <Link key={index} href={category.href} className='group cursor-pointer block'>
               <div className='bg-white dark:bg-gray-800 rounded-lg p-6 text-center shadow-md hover:shadow-lg border border-gray-100 dark:border-gray-700 hover:border-gray-200 dark:hover:border-gray-600 transition-all duration-200'>
@@ -114,7 +114,7 @@ export default function HomePage() {
       </section>
 
       {/* Enhanced Features Section */}
-      <section className='grid grid-cols-1 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6'>
+      <section className='grid grid-cols-1 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 py-4'>
         <div className='text-center p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow'>
           <div className='w-16 h-16 mx-auto mb-4 bg-gray-100 dark:bg-gray-900 rounded-full flex items-center justify-center'>
             <svg

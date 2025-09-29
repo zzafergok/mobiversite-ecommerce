@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react'
 import { ShoppingCart } from 'lucide-react'
 
 import { useCart } from '@/contexts/CartContext'
+import { jsonServerService } from '@/services/jsonServerService'
 
 import { Badge } from '@/components/core/badge'
 import { Button } from '@/components/core/button'
@@ -26,7 +27,7 @@ export default function DailyDeals() {
   useEffect(() => {
     const fetchDailyDeals = async () => {
       try {
-        const allProducts = await fetch('http://localhost:3001/products').then((res) => res.json())
+        const allProducts = await jsonServerService.getAllProducts()
 
         // Fisher-Yates shuffle algoritması ile güvenilir karıştırma
         const shuffled = [...allProducts]

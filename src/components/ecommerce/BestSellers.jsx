@@ -10,6 +10,7 @@ import { ShoppingCart, Heart } from 'lucide-react'
 import { useCart } from '@/contexts/CartContext'
 import { useAuth } from '@/contexts/AuthContext'
 import { useWishlist } from '@/contexts/WishlistContext'
+import { jsonServerService } from '@/services/jsonServerService'
 
 import { Badge } from '@/components/core/badge'
 import { Button } from '@/components/core/button'
@@ -29,7 +30,7 @@ export default function BestSellers() {
       try {
         await new Promise((resolve) => setTimeout(resolve, 1000))
 
-        const allProducts = await fetch('http://localhost:3001/products').then((res) => res.json())
+        const allProducts = await jsonServerService.getAllProducts()
         // En pahalı 6 ürünü best sellers olarak göster
         const bestSellers = allProducts.sort((a, b) => b.price - a.price).slice(0, 6)
         setProducts(bestSellers)
