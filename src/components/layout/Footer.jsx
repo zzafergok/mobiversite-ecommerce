@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { Badge } from '@/components/core/badge'
 import { Separator } from '@/components/core/separator'
 
@@ -12,33 +13,65 @@ export default function Footer() {
           <div className='col-span-1 md:col-span-2'>
             <h3 className='text-lg font-bold mb-4'>Mobiversite Store</h3>
             <p className='text-gray-300 text-sm mb-4'>
-              Teknoloji ve elektronik ürünlerinde güvenilir adresiniz. En kaliteli ürünleri en uygun fiyatlarla
-              sunuyoruz.
+              Türkiye'nin en güvenilir online alışveriş platformu. Elektronik, moda, takı ve binlerce üründe en iyi
+              fiyat garantisi. Hızlı teslimat, güvenli ödeme ve 7/24 müşteri hizmetleri ile yanınızdayız.
             </p>
             <div className='flex space-x-4'>
-              <span className='text-xs text-gray-400'>© 2024 D-MARKET Elektronik Hizmetler Tic. A.Ş.</span>
+              <span className='text-xs text-gray-400'>© 2024 Mobiversite E-Ticaret Ltd. Şti.</span>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className='font-semibold mb-4'>Hızlı Erişim</h4>
+            <h4 className='font-semibold mb-4'>Kategoriler</h4>
             <ul className='space-y-2 text-sm text-gray-300'>
-              <li>Güvenli Alışveriş</li>
-              <li>Gizlilik Politikası</li>
-              <li>Kullanım Koşulları</li>
-              <li>İptal ve İade</li>
+              <li>
+                <Link href='/products?category=electronics' className='hover:text-white transition-colors'>
+                  Elektronik
+                </Link>
+              </li>
+              <li>
+                <Link href="/products?category=men's clothing" className='hover:text-white transition-colors'>
+                  Erkek Giyim
+                </Link>
+              </li>
+              <li>
+                <Link href="/products?category=women's clothing" className='hover:text-white transition-colors'>
+                  Kadın Giyim
+                </Link>
+              </li>
+              <li>
+                <Link href='/products?category=jewelery' className='hover:text-white transition-colors'>
+                  Takı & Mücevher
+                </Link>
+              </li>
             </ul>
           </div>
 
           {/* Support */}
           <div>
-            <h4 className='font-semibold mb-4'>Müşteri Hizmetleri</h4>
+            <h4 className='font-semibold mb-4'>Hızlı Linkler</h4>
             <ul className='space-y-2 text-sm text-gray-300'>
-              <li>İletişim</li>
-              <li>Canlı Destek</li>
-              <li>SSS</li>
-              <li>0850 252 40 00</li>
+              <li>
+                <Link href='/products' className='hover:text-white transition-colors'>
+                  Tüm Ürünler
+                </Link>
+              </li>
+              <li>
+                <Link href='/cart' className='hover:text-white transition-colors'>
+                  Sepetim
+                </Link>
+              </li>
+              <li>
+                <Link href='/cookie-policy' className='hover:text-white transition-colors'>
+                  Çerez Politikası
+                </Link>
+              </li>
+              <li>
+                <Link href='/login' className='hover:text-white transition-colors'>
+                  Giriş Yap
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

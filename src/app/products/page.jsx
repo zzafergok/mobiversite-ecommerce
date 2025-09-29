@@ -7,6 +7,7 @@ import ProductFilters from '@/components/ecommerce/ProductFilters'
 import useApiService from '@/hooks/useApiService'
 import { ProductLoader } from '@/components/ui/EcommerceLoader'
 import { Card, CardContent } from '@/components/core/card'
+import { BreadcrumbStructuredData } from '@/components/seo/StructuredData'
 
 function ProductsPageContent() {
   const searchParams = useSearchParams()
@@ -27,6 +28,87 @@ function ProductsPageContent() {
   const INITIAL_LOAD = 16
 
   const apiService = useApiService()
+
+  // SEO ve dinamik title için helper fonksiyonlar
+  const getCategoryDisplayName = (category) => {
+    const categoryMap = {
+      electronics: 'Elektronik',
+      "men's clothing": 'Erkek Giyim',
+      "women's clothing": 'Kadın Giyim',
+      jewelery: 'Takı & Mücevher',
+      spor: 'Spor',
+      kozmetik: 'Kozmetik',
+      'anne-bebek': 'Anne & Bebek',
+      oyuncak: 'Oyuncak',
+      'pet-shop': 'Pet Shop',
+      'film-muzik': 'Film & Müzik',
+      kitap: 'Kitap',
+      supermarket: 'Süpermarket',
+    }
+
+    if (category.includes(',')) {
+      return category
+        .split(',')
+        .map((cat) => categoryMap[cat.trim()] || cat.trim())
+        .join(', ')
+    }
+
+    return categoryMap[category] || category
+  }
+
+  const generatePageTitle = () => {
+    let title = 'Ürünler'
+
+    if (searchQuery && selectedCategory !== 'all') {
+      title = `${searchQuery} - ${getCategoryDisplayName(selectedCategory)} Ürünleri`
+    } else if (searchQuery) {
+      title = `${searchQuery} Ürünleri`
+    } else if (selectedCategory !== 'all') {
+      title = `${getCategoryDisplayName(selectedCategory)} Ürünleri`
+    }
+
+    return `${title} | Mobiversite Store - Online Alışveriş`
+  }
+
+  const generateMetaDescription = () => {
+    let description = "Mobiversite Store'da binlerce ürün arasından seçim yapın. "
+
+    if (selectedCategory !== 'all') {
+      description += `${getCategoryDisplayName(selectedCategory)} kategorisinde en kaliteli ürünler. `
+    }
+
+    if (searchQuery) {
+      description += `"${searchQuery}" aramanıza uygun ürünler. `
+    }
+
+    description +=
+      "Hızlı teslimat, güvenli ödeme, ücretsiz kargo fırsatları ile Türkiye'nin güvenilir e-ticaret platformu."
+
+    return description
+  }
+
+  // Dinamik title ve meta güncelleme
+  useEffect(() => {
+    document.title = generatePageTitle()
+
+    // Meta description güncelleme
+    const metaDesc = document.querySelector('meta[name="description"]')
+    if (metaDesc) {
+      metaDesc.setAttribute('content', generateMetaDescription())
+    }
+
+    // OG title güncelleme
+    const ogTitle = document.querySelector('meta[property="og:title"]')
+    if (ogTitle) {
+      ogTitle.setAttribute('content', generatePageTitle())
+    }
+
+    // OG description güncelleme
+    const ogDesc = document.querySelector('meta[property="og:description"]')
+    if (ogDesc) {
+      ogDesc.setAttribute('content', generateMetaDescription())
+    }
+  }, [selectedCategory, searchQuery, filteredProducts.length])
 
   // Read URL parameters and set initial states
   useEffect(() => {
@@ -199,11 +281,42 @@ function ProductsPageContent() {
     return <ProductLoader size='lg' className='min-h-96' />
   }
 
+  // Breadcrumb verileri
+  const breadcrumbItems = [
+    { name: 'Ana Sayfa', url: 'https://www.mobiversite.store' },
+    { name: 'Ürünler', url: 'https://www.mobiversite.store/products' },
+  ]
+
+  if (selectedCategory !== 'all') {
+    breadcrumbItems.push({
+      name: getCategoryDisplayName(selectedCategory),
+      url: `https://www.mobiversite.store/products?category=${selectedCategory}`,
+    })
+  }
+
+  const getPageHeading = () => {
+    if (searchQuery && selectedCategory !== 'all') {
+      return `${searchQuery} - ${getCategoryDisplayName(selectedCategory)}`
+    } else if (searchQuery) {
+      return `"${searchQuery}" Arama Sonuçları`
+    } else if (selectedCategory !== 'all') {
+      return `${getCategoryDisplayName(selectedCategory)} Ürünleri`
+    }
+    return 'Tüm Ürünler'
+  }
+
   return (
     <div className='space-y-4 md:space-y-6 max-w-7xl mx-auto'>
+      <BreadcrumbStructuredData items={breadcrumbItems} />
+
       <div className='text-center px-2 md:px-0'>
-        <h1 className='text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4'>Tüm Ürünler</h1>
-        <p className='text-gray-600 dark:text-gray-400'>
+        <h1 className='text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4'>{getPageHeading()}</h1>
+        <p className='text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-2'>
+          {selectedCategory !== 'all'
+            ? `${getCategoryDisplayName(selectedCategory)} kategorisinde en kaliteli ürünler. Güvenli alışveriş, hızlı teslimat garantisi.`
+            : "Mobiversite Store'da binlerce ürün arasından seçim yapın. En kaliteli markaları en uygun fiyatlarla keşfedin."}
+        </p>
+        <p className='text-sm text-gray-500 dark:text-gray-500'>
           {displayedProducts.length} / {filteredProducts.length} ürün gösteriliyor
         </p>
       </div>

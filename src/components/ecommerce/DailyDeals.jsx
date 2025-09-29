@@ -5,11 +5,9 @@ import Image from 'next/image'
 
 import { useState, useEffect } from 'react'
 
-import { ShoppingCart, Heart } from 'lucide-react'
+import { ShoppingCart } from 'lucide-react'
 
 import { useCart } from '@/contexts/CartContext'
-import { useAuth } from '@/contexts/AuthContext'
-import { useWishlist } from '@/contexts/WishlistContext'
 
 import { Badge } from '@/components/core/badge'
 import { Button } from '@/components/core/button'
@@ -17,8 +15,6 @@ import { Card, CardContent } from '@/components/core/card'
 
 export default function DailyDeals() {
   const { addToCart } = useCart()
-  const { isAuthenticated } = useAuth()
-  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist()
 
   const [deals, setDeals] = useState([])
   const [timeLeft, setTimeLeft] = useState({
@@ -86,18 +82,6 @@ export default function DailyDeals() {
     addToCart(product)
   }
 
-  const handleWishlistToggle = (product) => {
-    if (!isAuthenticated) {
-      return
-    }
-
-    if (isInWishlist(product.id)) {
-      removeFromWishlist(product.id)
-    } else {
-      addToWishlist(product)
-    }
-  }
-
   return (
     <div className='bg-gradient-to-r from-red-500 to-orange-500 rounded-lg p-6 md:p-8 text-white'>
       <div className='flex flex-col md:flex-row justify-between items-center mb-6'>
@@ -156,18 +140,6 @@ export default function DailyDeals() {
                   <ShoppingCart size={14} />
                   Sepete Ekle
                 </Button>
-
-                {isAuthenticated && (
-                  <Button
-                    onClick={() => handleWishlistToggle(deal)}
-                    variant='outline'
-                    size='sm'
-                    className='w-full border-white text-white hover:bg-white hover:text-red-600'
-                  >
-                    <Heart size={14} fill={isInWishlist(deal.id) ? 'currentColor' : 'none'} />
-                    {isInWishlist(deal.id) ? 'Favorilerde' : 'Favorile'}
-                  </Button>
-                )}
               </div>
             </CardContent>
           </Card>

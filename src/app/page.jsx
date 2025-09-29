@@ -22,27 +22,41 @@ export default function HomePage() {
   return (
     <div className='space-y-8 md:space-y-12 max-w-7xl mx-auto'>
       {/* Hero Banner Section */}
-      <section className='relative h-64 md:h-96 bg-gradient-to-r from-gray-600 to-purple-600 rounded-lg mx-2 md:mx-0 overflow-hidden'>
+      <section className='relative h-72 sm:h-80 md:h-96 bg-gradient-to-r from-gray-600 to-purple-600 rounded-lg overflow-hidden'>
         <div className='absolute inset-0 bg-black bg-opacity-40' />
-        <div className='relative z-10 flex items-center justify-center h-full text-center text-white px-4 mx-auto max-w-4xl'>
-          <div>
-            <h1 className='text-3xl md:text-5xl font-bold mb-4'>Büyük İndirimler Başladı!</h1>
-            <p className='text-lg md:text-xl mb-6'>Seçili ürünlerde %70'e varan indirimler</p>
-            <button className='bg-white text-gray-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300'>
-              Fırsatları Keşfet
-            </button>
+        <div className='relative z-10 flex items-center justify-center h-full text-center text-white px-4 sm:px-6 mx-auto max-w-4xl'>
+          <div className='space-y-4 sm:space-y-6 flex flex-col items-center gap-4'>
+            <h1 className='text-2xl sm:text-3xl md:text-5xl font-bold leading-tight'>
+              Mobiversite Store'da
+              <br className='sm:hidden' />
+              Büyük Fırsatlar!
+            </h1>
+            <p className='text-sm sm:text-base md:text-xl leading-relaxed max-w-3xl mx-auto'>
+              Elektronik, moda, takı ve binlerce üründe %70'e varan indirimler. Hızlı teslimat, güvenli ödeme garantisi
+              ile Türkiye'nin en güvenilir online alışveriş platformu.
+            </p>
+            <Link href='/products'>
+              <button className='bg-white text-gray-600 px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300 text-sm sm:text-base'>
+                Fırsatları Keşfet
+              </button>
+            </Link>
           </div>
         </div>
       </section>
 
       {/* Categories Grid */}
-      <section className='px-2 md:px-0 overflow-hidden'>
-        <div className='text-center mb-6 md:mb-8'>
-          <h2 className='text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4'>Kategoriler</h2>
-          <p className='text-gray-600 dark:text-gray-400'>Aradığınız her şey burada</p>
+      <section className='overflow-hidden'>
+        <div className='text-center mb-6 md:mb-8 px-2'>
+          <h2 className='text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4'>
+            Online Alışveriş Kategorileri
+          </h2>
+          <p className='text-gray-600 dark:text-gray-400 max-w-2xl mx-auto'>
+            Elektronik ürünlerden modaya, takıdan kozmetiğe kadar geniş ürün yelpazesi ile ihtiyacınız olan her şey
+            Mobiversite Store'da. Kaliteli markaları en uygun fiyatlarla keşfedin.
+          </p>
         </div>
 
-        <div className='grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 p-4 md:p-0'>
+        <div className='grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 xs:py-4 lg:py-0 md:p-4'>
           {categories.map((category, index) => (
             <Link key={index} href={category.href} className='group cursor-pointer block'>
               <div className='bg-white dark:bg-gray-800 rounded-lg p-6 text-center shadow-md hover:shadow-lg border border-gray-100 dark:border-gray-700 hover:border-gray-200 dark:hover:border-gray-600 transition-all duration-200'>
@@ -61,7 +75,7 @@ export default function HomePage() {
       </section>
 
       {/* Daily Deals Section */}
-      <section className='px-2 md:px-0'>
+      <section>
         <Suspense
           fallback={
             <div className='bg-gradient-to-r from-red-500 to-orange-500 rounded-lg p-6 md:p-8 text-white text-center'>
@@ -74,8 +88,8 @@ export default function HomePage() {
       </section>
 
       {/* Featured Products Section */}
-      <section className='px-2 md:px-0'>
-        <div className='text-center mb-6 md:mb-8'>
+      <section>
+        <div className='text-center mb-6 md:mb-8 px-2'>
           <h2 className='text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4'>Öne Çıkan Ürünler</h2>
           <p className='text-gray-600 dark:text-gray-400 max-w-2xl mx-auto'>
             En popüler ve en çok tercih edilen ürünlerimizi keşfedin
@@ -88,8 +102,8 @@ export default function HomePage() {
       </section>
 
       {/* Best Sellers Section */}
-      <section className='px-2 md:px-0'>
-        <div className='text-center mb-6 md:mb-8'>
+      <section>
+        <div className='text-center mb-6 md:mb-8 px-2'>
           <h2 className='text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4'>🔥 En Çok Satanlar</h2>
           <p className='text-gray-600 dark:text-gray-400'>Bu ürünler çok beğeniliyor</p>
         </div>
@@ -100,7 +114,7 @@ export default function HomePage() {
       </section>
 
       {/* Enhanced Features Section */}
-      <section className='grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6 px-2 md:px-0 p-4 md:p-0'>
+      <section className='grid grid-cols-1 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6'>
         <div className='text-center p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow'>
           <div className='w-16 h-16 mx-auto mb-4 bg-gray-100 dark:bg-gray-900 rounded-full flex items-center justify-center'>
             <svg
@@ -173,8 +187,8 @@ export default function HomePage() {
       </section>
 
       {/* Newsletter Section */}
-      <section className='px-2 md:px-0'>
-        <div className='bg-gradient-to-r from-gray-600 to-purple-600 rounded-lg p-8 text-center text-white'>
+      <section>
+        <div className='bg-gradient-to-r from-gray-600 to-purple-600 rounded-lg p-6 sm:p-8 text-center text-white'>
           <h2 className='text-2xl md:text-3xl font-bold mb-4'>📧 Kampanyalardan Haberdar Olun</h2>
           <p className='text-gray-100 mb-6'>En yeni ürünler ve özel fırsatlardan ilk siz haberdar olun</p>
 

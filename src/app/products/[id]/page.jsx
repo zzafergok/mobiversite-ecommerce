@@ -19,6 +19,7 @@ import { Button } from '@/components/core/button'
 import { Card, CardContent } from '@/components/core/card'
 import { ProductLoader } from '@/components/ui/EcommerceLoader'
 import FavoritesAndListsDropdown from '@/components/ecommerce/FavoritesAndListsDropdown'
+import { ProductStructuredData, BreadcrumbStructuredData } from '@/components/seo/StructuredData'
 
 export default function ProductDetailPage({ params }) {
   const router = useRouter()
@@ -33,6 +34,78 @@ export default function ProductDetailPage({ params }) {
   const [quantity, setQuantity] = useState(1)
   const [product, setProduct] = useState(null)
   const [loading, setLoading] = useState(true)
+
+  // SEO helper fonksiyonlar
+  const getCategoryDisplayName = (category) => {
+    const categoryMap = {
+      electronics: 'Elektronik',
+      "men's clothing": 'Erkek Giyim',
+      "women's clothing": 'Kadın Giyim',
+      jewelery: 'Takı & Mücevher',
+      spor: 'Spor',
+      kozmetik: 'Kozmetik',
+      'anne-bebek': 'Anne & Bebek',
+      oyuncak: 'Oyuncak',
+      'pet-shop': 'Pet Shop',
+      'film-muzik': 'Film & Müzik',
+      kitap: 'Kitap',
+      supermarket: 'Süpermarket',
+    }
+    return categoryMap[category] || category
+  }
+
+  const generateProductTitle = (product) => {
+    if (!product) return 'Ürün Detayı | Mobiversite Store'
+    return `${product.title} - ${getCategoryDisplayName(product.category)} | Mobiversite Store`
+  }
+
+  const generateProductDescription = (product) => {
+    if (!product) return "Mobiversite Store'da kaliteli ürünler."
+
+    let description = `${product.title} ürününü Mobiversite Store'da keşfedin. `
+    description += `${getCategoryDisplayName(product.category)} kategorisinde ${product.price}$ fiyatıyla. `
+    description += product.description.substring(0, 100) + '... '
+    description += 'Hızlı teslimat, güvenli ödeme, ücretsiz kargo fırsatları.'
+
+    return description
+  }
+
+  // Dinamik SEO güncelleme
+  useEffect(() => {
+    if (product) {
+      document.title = generateProductTitle(product)
+
+      // Meta description güncelleme
+      const metaDesc = document.querySelector('meta[name="description"]')
+      if (metaDesc) {
+        metaDesc.setAttribute('content', generateProductDescription(product))
+      }
+
+      // OG title güncelleme
+      const ogTitle = document.querySelector('meta[property="og:title"]')
+      if (ogTitle) {
+        ogTitle.setAttribute('content', generateProductTitle(product))
+      }
+
+      // OG description güncelleme
+      const ogDesc = document.querySelector('meta[property="og:description"]')
+      if (ogDesc) {
+        ogDesc.setAttribute('content', generateProductDescription(product))
+      }
+
+      // OG image güncelleme
+      const ogImage = document.querySelector('meta[property="og:image"]')
+      if (ogImage) {
+        ogImage.setAttribute('content', product.image)
+      }
+
+      // Canonical URL güncelleme
+      const canonical = document.querySelector('link[rel="canonical"]')
+      if (canonical) {
+        canonical.setAttribute('href', `https://www.mobiversite.store/products/${product.id}`)
+      }
+    }
+  }, [product])
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -99,8 +172,24 @@ export default function ProductDetailPage({ params }) {
     notFound()
   }
 
+  // Breadcrumb verileri
+  const breadcrumbItems = [
+    { name: 'Ana Sayfa', url: 'https://www.mobiversite.store' },
+    { name: 'Ürünler', url: 'https://www.mobiversite.store/products' },
+    {
+      name: getCategoryDisplayName(product.category),
+      url: `https://www.mobiversite.store/products?category=${product.category}`,
+    },
+    {
+      name: product.title,
+      url: `https://www.mobiversite.store/products/${product.id}`,
+    },
+  ]
+
   return (
     <div className='max-w-6xl mx-auto px-4 sm:px-6 lg:px-8'>
+      <ProductStructuredData product={product} />
+      <BreadcrumbStructuredData items={breadcrumbItems} />
       {/* Back Button */}
       <Button
         variant='ghost'
@@ -132,12 +221,25 @@ export default function ProductDetailPage({ params }) {
         <div className='space-y-4 sm:space-y-6'>
           <div>
             <Badge variant='secondary' className='mb-3 sm:mb-4 capitalize'>
-              {product.category}
+              {getCategoryDisplayName(product.category)}
             </Badge>
             <h1 className='text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4'>
               {product.title}
             </h1>
-            <p className='text-2xl sm:text-3xl font-bold text-green-600 mb-4 sm:mb-6'>${product.price}</p>
+            <div className='flex items-center gap-4 mb-4'>
+              <p className='text-2xl sm:text-3xl font-bold text-green-600'>${product.price}</p>
+              <div className='flex items-center gap-1'>
+                <span className='text-yellow-500'>★★★★★</span>
+                <span className='text-sm text-gray-500'>(127 değerlendirme)</span>
+              </div>
+            </div>
+            <div className='flex items-center gap-2 mb-4 sm:mb-6'>
+              <span className='text-green-600 text-sm font-medium'>✓ Stokta var</span>
+              <span className='text-gray-500'>•</span>
+              <span className='text-sm text-gray-600'>Hızlı teslimat</span>
+              <span className='text-gray-500'>•</span>
+              <span className='text-sm text-gray-600'>Ücretsiz kargo</span>
+            </div>
           </div>
 
           <div>
