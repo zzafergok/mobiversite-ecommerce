@@ -134,12 +134,19 @@ export const apiService = process.env.NODE_ENV === 'production' ? vercelApiServi
 
 ```bash
 # Repository'yi clone'la
-git clone [https://github.com/zzafergok/mobiversite-ecommerce.git]
-cd mobiversite-ecommerce
+git clone https://github.com/zzafergok/mobiversite-ecommerce.git
+```
 
+```bash
+cd mobiversite-ecommerce
+```
+
+```bash
 # Dependencies'leri yükle
 npm install
+```
 
+```bash
 # Development server'ı başlat
 npm run dev
 ```
