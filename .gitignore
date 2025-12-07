@@ -67,3 +67,6 @@ pnpm-lock.yaml
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Code review and internal reports
+CODE_REVIEW_REPORT.md
